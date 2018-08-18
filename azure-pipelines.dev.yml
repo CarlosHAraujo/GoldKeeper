@@ -1,0 +1,19 @@
+# Build for Development environment
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
+
+name: GoldKeeper-CI-DEV
+
+trigger:
+- develop
+- feature/*
+- bugfix/*
+
+pool:
+  vmImage: 'VS2017-Win2016'
+
+variables:
+  BuildConfiguration: 'dev'
+
+steps:
+- template: azure-pipelines.base.yml
