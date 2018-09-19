@@ -3,13 +3,13 @@
 STATUS='pending'
 case $AGENT_JOBSTATUS in
 'Canceled')
-    $STATUS='error'
+    STATUS='error'
     ;;
 'Failed')
-    $STATUS='failure'
+    STATUS='failure'
     ;;
 'Succeeded' | 'SucceededWithIssues')
-    $STATUS='success'
+    STATUS='success'
     ;;
 esac
 
