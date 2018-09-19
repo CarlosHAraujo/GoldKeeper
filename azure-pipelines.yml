@@ -34,4 +34,4 @@ steps:
     configuration: '$(buildConfiguration)'
     
 - bash:
-  scriptPath: git-status.sh
+  filePath: git-status.sh
