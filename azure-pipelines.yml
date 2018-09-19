@@ -33,5 +33,4 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     
-- bash: echo Hello World from YAML!
-  displayName: Simple script to test YAML
+- bash: sh ./git-status.sh
