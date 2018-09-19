@@ -15,4 +15,15 @@ esac
 
 TARGET_URL=https://dev.azure.com/carlosharaujo/goldkeeper/_build/results?buildId=$BUILD_BUILDID
 
-curl --request POST --data '{"state": "${STATUS}", "target_url": "${TARGET_URL}", "context": "${BUILD_DEFINITIONNAME}"}' https://api.github.com/repos/carlosharaujo/goldkeeper/statuses/$BUILD_SOURCEVERSION > /dev/null
+curl --request POST --data "$(generate_post_data)" https://api.github.com/repos/carlosharaujo/goldkeeper/statuses/$BUILD_SOURCEVERSION > /dev/null
+
+generate_post_data()
+{
+    cat <<EOF
+    {
+        "state": "$STATUS",
+        "target_url": "$TARGET_URL",
+        "context": "$BUILD_DEFINITIONNAME"
+    }
+EOF
+}
