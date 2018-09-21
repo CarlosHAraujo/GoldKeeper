@@ -1,0 +1,18 @@
+# Bot to run NuKeeper. A tool to keep nuget package references up-to-date: https://github.com/NuKeeperDotNet/NuKeeper
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+name: NuKeeperBot
+trigger:
+- none
+
+pool:
+  vmImage: 'VS2017-Win2016'
+
+steps:
+- script: dotnet tool install --tool-path . NuKeeper
+  displayName: 'Install NuKeeper'
+
+- script: .\NuKeeper repo https://github.com/CarlosHAraujo/GoldKeeper $(goldkeeper.GithubToken) --consolidate
+  displayName: Update nuget packages with NuKeeper
+ 
