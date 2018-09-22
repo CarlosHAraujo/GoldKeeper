@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "commitmsg": "../../shell/commitmsg.sh",
-    "prepush": "../../shell/precommit.sh"
+    "prepush": "../../shell/prepush.sh"
   },
   "private": true,
   "dependencies": {
