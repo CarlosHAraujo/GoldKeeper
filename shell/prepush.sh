@@ -1,1 +1,1 @@
-if git-branch-is -q develop; then dotnet build ../../ ; fi
+if git-branch-is -q develop; then npm run build ; fi

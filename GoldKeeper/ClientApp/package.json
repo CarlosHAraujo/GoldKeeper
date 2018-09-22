@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && dotnet build ../../",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -48,6 +48,6 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.1",
     "tslint": "~5.11.0",
-    "typescript": "~3.0.3"
+    "typescript": "^2.9.2"
   }
 }
