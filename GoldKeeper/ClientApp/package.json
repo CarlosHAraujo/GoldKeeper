@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build && dotnet build ../../",
+    "build": "ng build && dotnet build ../../ --no-incremental -warnaserror",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

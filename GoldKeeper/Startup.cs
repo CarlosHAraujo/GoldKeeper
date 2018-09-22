@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.DependencyInjection;
 
+//[assembly: CLSCompliant(false)]
+
 namespace GoldKeeper
 {
     public class Startup
