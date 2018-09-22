@@ -33,4 +33,4 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     
-- bash: sh -x ./git-status.sh
+- bash: sh -x ./shell/git-status.sh

@@ -1,0 +1,1 @@
+# if git-branch-is develop; then dotnet build ../../ ; fi
