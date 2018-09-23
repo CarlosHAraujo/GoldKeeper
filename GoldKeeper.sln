@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldKeeper", "GoldKeeper\GoldKeeper.csproj", "{C2AAB43E-086C-4219-B9E1-EF56DA99FE47}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0017981E-2605-49A7-B68F-5293D8760606}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldKeeperTest", "Tests\GoldKeeperTest\GoldKeeperTest.csproj", "{A0CDBD2E-E9AB-41AE-B300-044F096E6291}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{C2AAB43E-086C-4219-B9E1-EF56DA99FE47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2AAB43E-086C-4219-B9E1-EF56DA99FE47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2AAB43E-086C-4219-B9E1-EF56DA99FE47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0CDBD2E-E9AB-41AE-B300-044F096E6291}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0CDBD2E-E9AB-41AE-B300-044F096E6291}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0CDBD2E-E9AB-41AE-B300-044F096E6291}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0CDBD2E-E9AB-41AE-B300-044F096E6291}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A0CDBD2E-E9AB-41AE-B300-044F096E6291} = {0017981E-2605-49A7-B68F-5293D8760606}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {02DF3347-58F8-4BAF-A105-B656E156D384}
