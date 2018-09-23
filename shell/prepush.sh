@@ -1,1 +1,1 @@
-if git-branch-is -q develop; then npm run build ; fi
+if git-branch-is -q develop; then npm run lint && npm run build ; else echo 'Current branch is not "develop". Skipping pre-push hook...' ; fi
