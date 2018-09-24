@@ -5,7 +5,7 @@ const request  = require('../GoldKeeper/ClientApp/node_modules/request');
 const red = "\033[31m";
 const green = "\x1b[32m";
 
-const branch = shell.exec('git rev-parse --abbrev-ref HEAD');
+const branch = shell.exec('git rev-parse --abbrev-ref HEAD', {silent:true});
 
 if (branch.code !== 0) {
   shell.echo('Error: Git commit failed');
