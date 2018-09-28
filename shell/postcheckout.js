@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const shell = require('../GoldKeeper/ClientApp/node_modules/shelljs');
-const request  = require('../GoldKeeper/ClientApp/node_modules/request');
+const shell = require('../node_modules/shelljs');
+const request  = require('../node_modules/request');
 const red = "\033[31m";
 const green = "\x1b[32m";
 

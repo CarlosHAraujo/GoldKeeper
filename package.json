@@ -1,0 +1,33 @@
+{
+  "name": "goldkeeper",
+  "version": "1.0.0",
+  "description": "Finance and Savings app",
+  "main": "index.js",
+  "scripts": {
+    "build-back": "dotnet build --no-incremental -warnaserror",
+    "build-front": "pushd ./GoldKeeper/ClientApp/ && npm run build",
+    "build": "npm run build-back && npm run build-front",
+    "test-back": "dotnet test ./Tests/**/*.csproj",
+    "test-front": "pushd ./GoldKeeper/ClientApp/ && npm run test",
+    "test": "npm run test-back && npm run test-front",
+    "lint-front": "pushd ./GoldKeeper/ClientApp/ && npm run lint",
+    "commitmsg": "./shell/commitmsg.sh",
+    "prepush": "./shell/prepush.sh",
+    "postcheckout": "node ./shell/postcheckout.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarlosHAraujo/GoldKeeper.git"
+  },
+  "author": "Carlos Araujo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CarlosHAraujo/GoldKeeper/issues"
+  },
+  "homepage": "https://github.com/CarlosHAraujo/GoldKeeper#readme",
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "request": "^2.88.0",
+    "shelljs": "^0.8.2"
+  }
+}
