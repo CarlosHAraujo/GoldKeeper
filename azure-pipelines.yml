@@ -5,6 +5,10 @@
 
 trigger:
 - master
+- develop
+- feature/*
+- bugfix/*
+- hotfix/*
 - greenkeeper/*
 
 pool:
