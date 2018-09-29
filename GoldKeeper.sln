@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28010.2003
+VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldKeeper", "GoldKeeper\GoldKeeper.csproj", "{C2AAB43E-086C-4219-B9E1-EF56DA99FE47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldKeeper", "GoldKeeper\GoldKeeper.csproj", "{920A80AF-DD18-4073-939E-BA1C53056D77}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0017981E-2605-49A7-B68F-5293D8760606}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F7A1302D-F174-4D60-B3D3-CE69D0EC798B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldKeeperTest", "Tests\GoldKeeperTest\GoldKeeperTest.csproj", "{A0CDBD2E-E9AB-41AE-B300-044F096E6291}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldKeeperTest", "Tests\GoldKeeperTest\GoldKeeperTest.csproj", "{31F9F72E-EF02-4AD1-B93B-45B58B9ECE3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,22 +15,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C2AAB43E-086C-4219-B9E1-EF56DA99FE47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2AAB43E-086C-4219-B9E1-EF56DA99FE47}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2AAB43E-086C-4219-B9E1-EF56DA99FE47}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C2AAB43E-086C-4219-B9E1-EF56DA99FE47}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A0CDBD2E-E9AB-41AE-B300-044F096E6291}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0CDBD2E-E9AB-41AE-B300-044F096E6291}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0CDBD2E-E9AB-41AE-B300-044F096E6291}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0CDBD2E-E9AB-41AE-B300-044F096E6291}.Release|Any CPU.Build.0 = Release|Any CPU
+		{920A80AF-DD18-4073-939E-BA1C53056D77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{920A80AF-DD18-4073-939E-BA1C53056D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{920A80AF-DD18-4073-939E-BA1C53056D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{920A80AF-DD18-4073-939E-BA1C53056D77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31F9F72E-EF02-4AD1-B93B-45B58B9ECE3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31F9F72E-EF02-4AD1-B93B-45B58B9ECE3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31F9F72E-EF02-4AD1-B93B-45B58B9ECE3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31F9F72E-EF02-4AD1-B93B-45B58B9ECE3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{A0CDBD2E-E9AB-41AE-B300-044F096E6291} = {0017981E-2605-49A7-B68F-5293D8760606}
+		{31F9F72E-EF02-4AD1-B93B-45B58B9ECE3D} = {F7A1302D-F174-4D60-B3D3-CE69D0EC798B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {02DF3347-58F8-4BAF-A105-B656E156D384}
+		SolutionGuid = {3A6EF1CB-8C9D-43F0-9F3A-5F9930915F1B}
 	EndGlobalSection
 EndGlobal
