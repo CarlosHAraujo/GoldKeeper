@@ -26,4 +26,4 @@ steps:
   command: 'custom'
   customCommand: 'npm run build'
 
-- bash: sh -x ./shell/git-status.sh
+- bash: sh -x ./git-status.sh

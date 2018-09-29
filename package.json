@@ -20,10 +20,7 @@
     "test": "npm run test-back && npm run test-front",
     "test:prod": "npm run test-back:prod && npm run test-front:prod",
     "lint-front": "pushd ./GoldKeeper/ClientApp/ && npm run lint",
-    "lint-front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run lint:prod",
-    "commitmsg": "./shell/commitmsg.sh",
-    "prepush": "./shell/prepush.sh",
-    "postcheckout": "node ./shell/postcheckout.js"
+    "lint-front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run lint:prod"
   },
   "repository": {
     "type": "git",
@@ -34,10 +31,5 @@
   "bugs": {
     "url": "https://github.com/CarlosHAraujo/GoldKeeper/issues"
   },
-  "homepage": "https://github.com/CarlosHAraujo/GoldKeeper#readme",
-  "devDependencies": {
-    "husky": "^0.14.3",
-    "request": "^2.88.0",
-    "shelljs": "^0.8.2"
-  }
+  "homepage": "https://github.com/CarlosHAraujo/GoldKeeper#readme"
 }
