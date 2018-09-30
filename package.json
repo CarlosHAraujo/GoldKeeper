@@ -3,17 +3,24 @@
   "version": "1.0.0",
   "description": "Finance and Savings app",
   "main": "index.js",
+  "contributors": [
+    "Carlos Araujo <carlinhosmillenium@yahoo.com.br>"
+  ],
   "scripts": {
     "build-back": "dotnet build --no-incremental -warnaserror",
+    "build-back:prod": "dotnet build -c Release --no-incremental -warnaserror",
     "build-front": "pushd ./GoldKeeper/ClientApp/ && npm run build",
+    "build-front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run build:prod",
     "build": "npm run build-back && npm run build-front",
-    "test-back": "dotnet test ./Tests/**/*.csproj",
+    "build:prod": "npm run build-back:prod && npm run build-front:prod",
+    "test-back": "dotnet test",
+    "test-back:prod": "dotnet test -c Release",
     "test-front": "pushd ./GoldKeeper/ClientApp/ && npm run test",
+    "test-front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run test:prod",
     "test": "npm run test-back && npm run test-front",
+    "test:prod": "npm run test-back:prod && npm run test-front:prod",
     "lint-front": "pushd ./GoldKeeper/ClientApp/ && npm run lint",
-    "commitmsg": "./shell/commitmsg.sh",
-    "prepush": "./shell/prepush.sh",
-    "postcheckout": "node ./shell/postcheckout.js"
+    "lint-front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run lint:prod"
   },
   "repository": {
     "type": "git",
@@ -24,10 +31,5 @@
   "bugs": {
     "url": "https://github.com/CarlosHAraujo/GoldKeeper/issues"
   },
-  "homepage": "https://github.com/CarlosHAraujo/GoldKeeper#readme",
-  "devDependencies": {
-    "husky": "^0.14.3",
-    "request": "^2.88.0",
-    "shelljs": "^0.8.2"
-  }
+  "homepage": "https://github.com/CarlosHAraujo/GoldKeeper#readme"
 }
