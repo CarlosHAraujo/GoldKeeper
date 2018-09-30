@@ -20,7 +20,10 @@
     "test": "npm run test-back && npm run test-front",
     "test:prod": "npm run test-back:prod && npm run test-front:prod",
     "lint-front": "pushd ./GoldKeeper/ClientApp/ && npm run lint",
-    "lint-front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run lint:prod"
+    "lint-front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run lint:prod",
+    "commitmsg": "./shell/commitmsg.sh",
+    "prepush": "./shell/prepush.sh",
+    "postcheckout": "node ./shell/postcheckout.js"
   },
   "repository": {
     "type": "git",
