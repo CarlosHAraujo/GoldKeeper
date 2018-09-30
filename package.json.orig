@@ -13,14 +13,21 @@
     "build-front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run build:prod",
     "build": "npm run build-back && npm run build-front",
     "build:prod": "npm run build-back:prod && npm run build-front:prod",
-    "test-back": "dotnet test",
-    "test-back:prod": "dotnet test -c Release",
+    "test-back": "dotnet test ./Tests/**/*.csproj",
+    "test-back:prod": "dotnet test -c Release ./Tests/**/*.csproj",
     "test-front": "pushd ./GoldKeeper/ClientApp/ && npm run test",
     "test-front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run test:prod",
     "test": "npm run test-back && npm run test-front",
     "test:prod": "npm run test-back:prod && npm run test-front:prod",
     "lint-front": "pushd ./GoldKeeper/ClientApp/ && npm run lint",
+<<<<<<< HEAD
+    "lint-front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run lint:prod",
+    "commitmsg": "./shell/commitmsg.sh",
+    "prepush": "./shell/prepush.sh",
+    "postcheckout": "node ./shell/postcheckout.js"
+=======
     "lint-front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run lint:prod"
+>>>>>>> 1cd319b... ci: build prod pipeline
   },
   "repository": {
     "type": "git",
@@ -31,5 +38,14 @@
   "bugs": {
     "url": "https://github.com/CarlosHAraujo/GoldKeeper/issues"
   },
+<<<<<<< HEAD
+  "homepage": "https://github.com/CarlosHAraujo/GoldKeeper#readme",
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "request": "^2.88.0",
+    "shelljs": "^0.8.2"
+  }
+=======
   "homepage": "https://github.com/CarlosHAraujo/GoldKeeper#readme"
+>>>>>>> 1cd319b... ci: build prod pipeline
 }

@@ -23,7 +23,43 @@ steps:
 - task: NuGetToolInstaller@0
 
 - task: Npm@1
-  command: 'custom'
-  customCommand: 'npm run build'
+  displayName: 'Build (back-end)'
+  inputs:
+    command: 'custom'
+    customCommand: 'run build-back'
+
+- task: Npm@1
+  displayName: 'Test (back-end)'
+  inputs:
+    command: 'custom'
+    customCommand: 'run test-back'
+
+- task: Npm@1
+  displayName: 'npm install (front-end)'
+  inputs:
+    workingDir: './GoldKeeper/ClientApp/'
+    command: 'install'
+
+- task: Npm@1
+  displayName: 'Lint (front-end)'
+  inputs:
+    workingDir: './GoldKeeper/ClientApp/'
+    command: 'custom'
+    customCommand: 'run lint'
+
+- task: Npm@1
+  displayName: 'Build (front-end)'
+  inputs:
+    workingDir: './GoldKeeper/ClientApp/'
+    command: 'custom'
+    customCommand: 'run build'
+
+- task: Npm@1
+  displayName: 'Test (front-end)'
+  inputs:
+    workingDir: './GoldKeeper/ClientApp/'
+    command: 'custom'
+    customCommand: 'run test'
 
 - bash: sh -x ./git-status.sh
+  displayName: 'Create GitHub status'
