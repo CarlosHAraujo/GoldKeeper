@@ -18,10 +18,18 @@ steps:
 - task: NuGetToolInstaller@0
 
 - task: Npm@1
-  displayName: 'Build (back-end)'
+  displayName: 'Build (back-end) Debug'
   inputs:
     command: 'custom'
-    customCommand: if $(false) ; then 'run build-back' ; else 'run build-back:prod' ;
+    customCommand: 'run build-back'
+  enabled: if $BUILD_SOURCEBRANCHNAME != 'master' ; then true ; else false ;
+
+- task: Npm@1
+  displayName: 'Build (back-end) Release'
+  inputs:
+    command: 'custom'
+    customCommand: 'run build-back:prod'
+  enabled: if $BUILD_SOURCEBRANCHNAME == 'master' ; then true ; else false ;
 
 - task: Npm@1
   displayName: 'Test (back-end)'
