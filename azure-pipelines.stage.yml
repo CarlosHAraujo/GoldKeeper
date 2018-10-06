@@ -1,15 +1,11 @@
-# .NET Desktop
-# Build and run tests for .NET Desktop or Windows classic desktop solutions.
+# Build for Staging environment
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
 
+name: GoldKeeper-CI
 trigger:
-- master
-- develop
-- feature/*
-- bugfix/*
+- release/*
 - hotfix/*
-- greenkeeper/*
 
 pool:
   vmImage: 'VS2017-Win2016'
@@ -18,51 +14,50 @@ steps:
 - task: NuGetToolInstaller@0
 
 - task: Npm@1
-  displayName: 'Build (back-end) Debug'
-  inputs:
-    command: 'custom'
-    customCommand: 'run build-back'
-  enabled: if $BUILD_SOURCEBRANCHNAME != 'master' ; then true ; else false ;
-
-- task: Npm@1
-  displayName: 'Build (back-end) Release'
+  displayName: 'Build (back-end) Prod'
   inputs:
     command: 'custom'
     customCommand: 'run build-back:prod'
-  enabled: if $BUILD_SOURCEBRANCHNAME == 'master' ; then true ; else false ;
 
 - task: Npm@1
-  displayName: 'Test (back-end)'
+  displayName: 'Test (back-end) Prod'
   inputs:
     command: 'custom'
-    customCommand: 'run test-back'
+    customCommand: 'run test-back:prod'
 
 - task: Npm@1
-  displayName: 'npm install (front-end)'
+  displayName: 'npm install (front-end) Prod'
   inputs:
     workingDir: './GoldKeeper/ClientApp/'
     command: 'install'
 
 - task: Npm@1
-  displayName: 'Lint (front-end)'
+  displayName: 'Lint (front-end) Prod'
   inputs:
     workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
-    customCommand: 'run lint'
+    customCommand: 'run lint:prod'
 
 - task: Npm@1
-  displayName: 'Build (front-end)'
+  displayName: 'Build (front-end) Prod'
   inputs:
     workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
-    customCommand: 'run build'
+    customCommand: 'run build:prod'
 
 - task: Npm@1
-  displayName: 'Test (front-end)'
+  displayName: 'Test (front-end) Prod'
   inputs:
     workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
-    customCommand: 'run test'
+    customCommand: 'run test:prod'
+    
+- task: Npm@1
+  displayName: 'e2e Test (front-end) Prod'
+  inputs:
+    workingDir: './GoldKeeper/ClientApp/'
+    command: 'custom'
+    customCommand: 'run e2e:prod'
 
 - bash: sh -x ./shell/git-status.sh
   displayName: 'Create GitHub status'
