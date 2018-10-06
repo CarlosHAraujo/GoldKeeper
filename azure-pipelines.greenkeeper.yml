@@ -1,0 +1,29 @@
+# Build for Greenkeeper
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
+
+name: GoldKeeper-CI
+trigger:
+- greenkeeper/*
+
+pool:
+  vmImage: 'VS2017-Win2016'
+
+steps:
+- task: NuGetToolInstaller@0
+
+- task: Npm@1
+  displayName: 'npm install (front-end) Prod'
+  inputs:
+    workingDir: './GoldKeeper/ClientApp/'
+    command: 'install'
+
+- task: Npm@1
+  displayName: 'Build (front-end) Prod'
+  inputs:
+    workingDir: './GoldKeeper/ClientApp/'
+    command: 'custom'
+    customCommand: 'run build:prod'
+
+- bash: sh -x ./shell/git-status.sh
+  displayName: 'Create GitHub status'
