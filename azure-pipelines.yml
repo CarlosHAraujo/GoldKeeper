@@ -25,5 +25,5 @@ steps:
     command: 'custom'
     customCommand: 'run build'
 
-- bash: sh -x ./shell/git-status.sh
+- bash: sh -x ./git-status.sh
   displayName: 'Create GitHub status'
