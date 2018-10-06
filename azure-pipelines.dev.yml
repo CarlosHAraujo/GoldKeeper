@@ -1,0 +1,57 @@
+# Build for Master Branch
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
+
+name: GoldKeeper-CI
+trigger:
+- develop
+- feature/*
+- bugfix/*
+
+pool:
+  vmImage: 'VS2017-Win2016'
+
+steps:
+- task: NuGetToolInstaller@0
+
+- task: Npm@1
+  displayName: 'Build (back-end) Dev'
+  inputs:
+    command: 'custom'
+    customCommand: 'run build-back'
+
+- task: Npm@1
+  displayName: 'Test (back-end) Dev'
+  inputs:
+    command: 'custom'
+    customCommand: 'run test-back'
+
+- task: Npm@1
+  displayName: 'npm install (front-end) Dev'
+  inputs:
+    workingDir: './GoldKeeper/ClientApp/'
+    command: 'install'
+
+- task: Npm@1
+  displayName: 'Lint (front-end) Dev'
+  inputs:
+    workingDir: './GoldKeeper/ClientApp/'
+    command: 'custom'
+    customCommand: 'run lint'
+
+- task: Npm@1
+  displayName: 'Build (front-end)'
+  inputs:
+    workingDir: './GoldKeeper/ClientApp/'
+    command: 'custom'
+    customCommand: 'run build'
+
+- task: Npm@1
+  displayName: 'Test (front-end) Dev'
+  inputs:
+    workingDir: './GoldKeeper/ClientApp/'
+    command: 'custom'
+    customCommand: 'run test'
+
+- bash: sh -x ./shell/git-status.sh
+  displayName: 'Create GitHub status'

@@ -5,9 +5,13 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --prod",
     "test": "ng test",
+    "test:prod": "ng test --prod",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint:prod": "ng lint --configuration=production",
+    "e2e": "ng e2e",
+    "e2e:prod": "ng e2e --prod"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +33,8 @@
     "@angular/cli": "~6.2.2",
     "@angular/compiler-cli": "^6.1.0",
     "@angular/language-service": "^6.1.0",
+    "@commitlint/cli": "^7.1.2",
+    "@commitlint/config-conventional": "^7.1.2",
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~10.10.1",
@@ -40,9 +46,10 @@
     "karma-coverage-istanbul-reporter": "~2.0.0",
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^1.3.1",
+    "karma-phantomjs-launcher": "^1.0.4",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.1",
     "tslint": "~5.11.0",
-    "typescript": "~3.0.3"
+    "typescript": "^2.9.2"
   }
 }
