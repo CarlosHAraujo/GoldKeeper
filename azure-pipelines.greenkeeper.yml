@@ -13,17 +13,17 @@ steps:
 - task: NuGetToolInstaller@0
 
 - task: Npm@1
-  displayName: 'npm install (front-end) Prod'
+  displayName: 'npm install (front-end)'
   inputs:
     workingDir: './GoldKeeper/ClientApp/'
     command: 'install'
 
 - task: Npm@1
-  displayName: 'Build (front-end) Prod'
+  displayName: 'Build (front-end)'
   inputs:
     workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
-    customCommand: 'run build:prod'
+    customCommand: 'run build'
 
 - bash: sh -x ./shell/git-status.sh
   displayName: 'Create GitHub status'
