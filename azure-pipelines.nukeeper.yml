@@ -4,31 +4,25 @@
 
 name: GoldKeeper-CI
 trigger:
-- greenkeeper/*
+- nukeeper-*
 
 pool:
   vmImage: 'VS2017-Win2016'
 
 steps:
-- task: Npm@1
-  displayName: 'npm install (front-end)'
-  inputs:
-    workingDir: './GoldKeeper/ClientApp/'
-    command: 'install'
+- task: NuGetToolInstaller@0
 
 - task: Npm@1
-  displayName: 'Build (front-end) Dev'
+  displayName: 'Build (back-end) Dev'
   inputs:
-    workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
-    customCommand: 'run build'
+    customCommand: 'run build-back'
 
 - task: Npm@1
-  displayName: 'Test (front-end) Dev'
+  displayName: 'Test (back-end) Dev'
   inputs:
-    workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
-    customCommand: 'run test'
+    customCommand: 'run test-back'
 
 - bash: sh -x ./shell/git-status.sh
   displayName: 'Create GitHub status'

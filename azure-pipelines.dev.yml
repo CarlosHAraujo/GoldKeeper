@@ -27,7 +27,7 @@ steps:
     customCommand: 'run test-back'
 
 - task: Npm@1
-  displayName: 'npm install (front-end) Dev'
+  displayName: 'npm install (front-end)'
   inputs:
     workingDir: './GoldKeeper/ClientApp/'
     command: 'install'
@@ -40,7 +40,7 @@ steps:
     customCommand: 'run lint'
 
 - task: Npm@1
-  displayName: 'Build (front-end)'
+  displayName: 'Build (front-end) Dev'
   inputs:
     workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
