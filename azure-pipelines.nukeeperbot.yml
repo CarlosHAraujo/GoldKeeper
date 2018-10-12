@@ -16,5 +16,5 @@ steps:
     custom: tool
     arguments: 'install --tool-path %USERPROFILE%\.dotnet\tools\nukeeper NuKeeper'
 
-- script: '%USERPROFILE%\.dotnet\tools\nukeeper\NuKeeper repo https://github.com/myorg/myrepo $GOLDKEEPER_GITHUBTOKEN --consolidate'
+- script: NuKeeper repo https://github.com/myorg/myrepo $GOLDKEEPER_GITHUBTOKEN --consolidate
   displayName: Update nuget packages with NuKeeper
