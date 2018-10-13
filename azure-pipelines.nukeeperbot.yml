@@ -8,11 +8,16 @@ trigger:
 pool:
   vmImage: 'VS2017-Win2016'
 
-steps:
-- task: DotNetCoreInstaller@0
-  displayName: Install NuKeeper
-  inputs:
-    packageType: NuKeeper
+# steps:
+# - task: DotNetCoreInstaller@0
+#   displayName: 'Use .NET Core sdk 2.1.403'
+#   inputs:
+#     version: 2.1.403
+
+- script: |
+   dotnet tool install --tool-path . NuKeeper
+   .\NuKeeper
+  displayName: 'Install NuKeeper'
 
 - script: NuKeeper repo https://github.com/myorg/myrepo $GOLDKEEPER_GITHUBTOKEN --consolidate
   displayName: Update nuget packages with NuKeeper
