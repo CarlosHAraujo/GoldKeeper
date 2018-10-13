@@ -9,12 +9,11 @@ pool:
   vmImage: 'VS2017-Win2016'
 
 steps:
-- task: DotNetCoreCLI@2
+- task: DotNetCoreInstaller@0
   displayName: Install NuKeeper
   inputs:
-    command: custom
-    custom: tool
-    arguments: 'install --tool-path %USERPROFILE%\.dotnet\tools\nukeeper NuKeeper'
+    packageType: NuKeeper
 
 - script: NuKeeper repo https://github.com/myorg/myrepo $GOLDKEEPER_GITHUBTOKEN --consolidate
   displayName: Update nuget packages with NuKeeper
+ 
