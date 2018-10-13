@@ -2,7 +2,7 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
 
-name: GoldKeeper-CI
+name: GoldKeeper-CI-STAGE
 trigger:
 - release/*
 - hotfix/*
@@ -58,6 +58,3 @@ steps:
     workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
     customCommand: 'run e2e:prod'
-
-- bash: sh -x ./shell/git-status.sh
-  displayName: 'Create GitHub status'
