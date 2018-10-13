@@ -29,6 +29,3 @@ steps:
     workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
     customCommand: 'run test'
-
-- bash: sh -x ./shell/git-status.sh
-  displayName: 'Create GitHub status'
