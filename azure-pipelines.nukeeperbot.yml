@@ -8,7 +8,7 @@ trigger:
 pool:
   vmImage: 'VS2017-Win2016'
 
-# steps:
+steps:
 # - task: DotNetCoreInstaller@0
 #   displayName: 'Use .NET Core sdk 2.1.403'
 #   inputs:
