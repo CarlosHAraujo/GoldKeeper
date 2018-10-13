@@ -1,8 +1,8 @@
-# Build for Master Branch
+# Build for Development environment
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
 
-name: GoldKeeper-CI
+name: GoldKeeper-CI-DEV
 trigger:
 - develop
 - feature/*
