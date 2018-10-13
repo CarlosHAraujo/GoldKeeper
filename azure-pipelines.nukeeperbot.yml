@@ -13,8 +13,7 @@ steps:
 #   displayName: 'Use .NET Core sdk 2.1.403'
 #   inputs:
 #     version: 2.1.403
-
--script: |
+- script: |
     dotnet tool install --tool-path . dotnetsay
     .\dotnetsay
   displayName: 'Test command'
