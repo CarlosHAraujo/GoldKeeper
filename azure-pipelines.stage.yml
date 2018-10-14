@@ -58,3 +58,7 @@ steps:
     workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
     customCommand: 'run e2e:prod'
+
+- bash: sh -x ./shell/git-status.sh
+  displayName: 'Create GitHub status'
+  
