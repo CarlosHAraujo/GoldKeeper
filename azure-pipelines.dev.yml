@@ -12,10 +12,11 @@ trigger:
 pool:
   vmImage: 'VS2017-Win2016'
 
+variables:
+  BuildConfiguration: 'dev'
+
 steps:
 - template: azure-pipelines.base.yml
-  parameters:
-    BuildConfiguration: 'dev'
 
 - task: Npm@1
   displayName: 'Build (back-end) Dev'

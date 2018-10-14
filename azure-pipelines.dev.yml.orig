@@ -1,32 +1,37 @@
-# Build for Production environment
+# Build for Development environment
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
 
-name: GoldKeeper-CI-PROD
+name: GoldKeeper-CI-DEV
 
 trigger:
-- master
+- develop
+- feature/*
+- bugfix/*
 
 pool:
   vmImage: 'VS2017-Win2016'
 
-variables:
-  BuildConfiguration: 'prod'
-
 steps:
 - template: azure-pipelines.base.yml
+  parameters:
+<<<<<<< HEAD
+    BuildConfiguration: 'dev'
+=======
+    BuildConfiguration: dev
+>>>>>>> f88b497cb8937a4b2f9afd8d0f9484d8b73e3c6a
 
 - task: Npm@1
-  displayName: 'Build (back-end) Prod'
+  displayName: 'Build (back-end) Dev'
   inputs:
     command: 'custom'
-    customCommand: 'run build-back:prod'
+    customCommand: 'run build-back'
 
 - task: Npm@1
-  displayName: 'Test (back-end) Prod'
+  displayName: 'Test (back-end) Dev'
   inputs:
     command: 'custom'
-    customCommand: 'run test-back:prod'
+    customCommand: 'run test-back'
 
 - task: Npm@1
   displayName: 'npm install (front-end)'
@@ -35,29 +40,22 @@ steps:
     command: 'install'
 
 - task: Npm@1
-  displayName: 'Lint (front-end) Prod'
+  displayName: 'Lint (front-end) Dev'
   inputs:
     workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
-    customCommand: 'run lint:prod'
+    customCommand: 'run lint'
 
 - task: Npm@1
-  displayName: 'Build (front-end) Prod'
+  displayName: 'Build (front-end) Dev'
   inputs:
     workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
-    customCommand: 'run build:prod'
+    customCommand: 'run build'
 
 - task: Npm@1
-  displayName: 'Test (front-end) Prod'
+  displayName: 'Test (front-end) Dev'
   inputs:
     workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
-    customCommand: 'run test:prod'
-    
-- task: Npm@1
-  displayName: 'e2e Test (front-end) Prod'
-  inputs:
-    workingDir: './GoldKeeper/ClientApp/'
-    command: 'custom'
-    customCommand: 'run e2e:prod'
+    customCommand: 'run test'

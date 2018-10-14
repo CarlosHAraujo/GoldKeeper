@@ -11,11 +11,14 @@ trigger:
 pool:
   vmImage: 'VS2017-Win2016'
 
-variables:
-  BuildConfiguration: 'prod'
-
 steps:
 - template: azure-pipelines.base.yml
+  parameters:
+<<<<<<< HEAD
+    BuildConfiguration: 'prod'
+=======
+    BuildConfiguration: prod
+>>>>>>> f88b497cb8937a4b2f9afd8d0f9484d8b73e3c6a
 
 - task: Npm@1
   displayName: 'Test (back-end) Prod'
