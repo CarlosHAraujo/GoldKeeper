@@ -2,9 +2,6 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
 
-variables:
-  BuildConfiguration: ''
-
 steps:
 - task: NuGetToolInstaller@0
 
