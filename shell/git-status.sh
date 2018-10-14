@@ -7,7 +7,7 @@ generate_post_data()
     {
         "state": "$STATUS",
         "target_url": "$TARGET_URL",
-        "context": "$BUILD_DEFINITIONNAME"
+        "context": "GoldKeeper-CI"
     }
 EOF
 }
@@ -27,10 +27,6 @@ case $AGENT_JOBSTATUS in
 esac
 
 TARGET_URL=https://dev.azure.com/carlosharaujo/goldkeeper/_build/results?buildId=$BUILD_BUILDID
-echo $0
-echo $1
-echo $2
-echo $3
-echo $4
-echo $5
+
+# $1 is the first parameter and should be the github access token
 curl --request POST -H "Authorization: token $1" --data "$(generate_post_data)" https://api.github.com/repos/carlosharaujo/goldkeeper/statuses/$BUILD_SOURCEVERSION > /dev/null
