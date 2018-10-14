@@ -3,3 +3,4 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/CarlosHAraujo/GoldKeeper.svg)](https://greenkeeper.io/)
 
 Bump 1
+Bump 2
