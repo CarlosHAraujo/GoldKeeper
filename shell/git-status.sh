@@ -27,5 +27,5 @@ case $AGENT_JOBSTATUS in
 esac
 
 TARGET_URL=https://dev.azure.com/carlosharaujo/goldkeeper/_build/results?buildId=$BUILD_BUILDID
-echo $GOLDKEEPER_GITHUBTOKEN
-curl --request POST -H "Authorization: token $GOLDKEEPER_GITHUBTOKEN" --data "$(generate_post_data)" https://api.github.com/repos/carlosharaujo/goldkeeper/statuses/$BUILD_SOURCEVERSION > /dev/null
+echo $(goldkeeper.GithubToken)
+curl --request POST -H "Authorization: token $(goldkeeper.GithubToken)" --data "$(generate_post_data)" https://api.github.com/repos/carlosharaujo/goldkeeper/statuses/$BUILD_SOURCEVERSION > /dev/null
