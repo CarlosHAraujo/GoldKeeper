@@ -16,43 +16,11 @@ variables:
 
 steps:
 - template: azure-pipelines.base.yml
-
-- task: Npm@1
-  displayName: 'Test (back-end) Prod'
-  inputs:
-    command: 'custom'
-    customCommand: 'run test-back:prod'
-
-- task: Npm@1
-  displayName: 'npm install (front-end)'
-  inputs:
-    workingDir: './GoldKeeper/ClientApp/'
-    command: 'install'
-
-- task: Npm@1
-  displayName: 'Lint (front-end) Prod'
-  inputs:
-    workingDir: './GoldKeeper/ClientApp/'
-    command: 'custom'
-    customCommand: 'run lint:prod'
-
-- task: Npm@1
-  displayName: 'Build (front-end) Prod'
-  inputs:
-    workingDir: './GoldKeeper/ClientApp/'
-    command: 'custom'
-    customCommand: 'run build:prod'
-
-- task: Npm@1
-  displayName: 'Test (front-end) Prod'
-  inputs:
-    workingDir: './GoldKeeper/ClientApp/'
-    command: 'custom'
-    customCommand: 'run test:prod'
-    
-- task: Npm@1
-  displayName: 'e2e Test (front-end) Prod'
-  inputs:
-    workingDir: './GoldKeeper/ClientApp/'
-    command: 'custom'
-    customCommand: 'run e2e:prod'
+  parameters:
+    extraSteps:    
+    - task: Npm@1
+      displayName: 'e2e Test (front-end) Prod'
+      inputs:
+        workingDir: './GoldKeeper/ClientApp/'
+        command: 'custom'
+        customCommand: 'run e2e:prod'
