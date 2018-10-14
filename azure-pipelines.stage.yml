@@ -3,21 +3,16 @@
 # https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
 
 name: GoldKeeper-CI-STAGE
+
 trigger:
 - release/*
 - hotfix/*
 
-pool:
-  vmImage: 'VS2017-Win2016'
+variables: 
+  BuildConfiguration: prod
 
 steps:
-- task: NuGetToolInstaller@0
-
-- task: Npm@1
-  displayName: 'Build (back-end) Prod'
-  inputs:
-    command: 'custom'
-    customCommand: 'run build-back:prod'
+- template: azure-pipelines.base.yml
 
 - task: Npm@1
   displayName: 'Test (back-end) Prod'
@@ -58,7 +53,3 @@ steps:
     workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
     customCommand: 'run e2e:prod'
-
-- bash: sh -x ./shell/git-status.sh
-  displayName: 'Create GitHub status'
-  

@@ -1,0 +1,28 @@
+# Base build definition
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
+
+pool:
+  vmImage: 'VS2017-Win2016'
+
+steps:
+- task: NuGetToolInstaller@0
+
+- task: DotNetCoreCLI@2
+  displayName: Install Nerdbank.GitVersioning tool
+  inputs:
+    command: custom
+    custom: tool
+    arguments: install --tool-path . nbgv
+
+- script: nbgv cloud
+  displayName: Set Version
+
+- task: Npm@1
+  displayName: 'Build (back-end) $(BuildConfiguration)'
+  inputs:
+    command: 'custom'
+    customCommand: 'run build-back:$(BuildConfiguration)'
+
+- bash: sh -x ./shell/git-status.sh $(goldkeeper.GithubToken)
+  displayName: 'Create GitHub status'

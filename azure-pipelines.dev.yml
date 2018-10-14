@@ -3,26 +3,17 @@
 # https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
 
 name: GoldKeeper-CI-DEV
+
 trigger:
 - develop
 - feature/*
 - bugfix/*
 
-pool:
-  vmImage: 'VS2017-Win2016'
+variables: 
+  BuildConfiguration: dev
 
 steps:
-- task: DotNetCoreCLI@2  
-  displayName: Install Nerdbank.GitVersioning tool
-  inputs:
-    command: custom
-    custom: tool
-    arguments: install --tool-path . nbgv
-
-- script: nbgv cloud
-  displayName: Set Version
-
-- task: NuGetToolInstaller@0
+- template: azure-pipelines.base.yml
 
 - task: Npm@1
   displayName: 'Build (back-end) Dev'
@@ -62,7 +53,3 @@ steps:
     workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
     customCommand: 'run test'
-
-- bash: sh -x ./shell/git-status.sh $(goldkeeper.GithubToken)
-  displayName: 'Create GitHub status'
-  
