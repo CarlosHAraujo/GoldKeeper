@@ -2,8 +2,8 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
 
-pool:
-  vmImage: 'VS2017-Win2016'
+parameters:
+  BuildConfiguration: dev
 
 steps:
 - task: NuGetToolInstaller@0
@@ -19,10 +19,10 @@ steps:
   displayName: Set Version
 
 - task: Npm@1
-  displayName: 'Build (back-end) $(BuildConfiguration)'
+  displayName: 'Build (back-end) ${{ parameters.BuildConfiguration }}'
   inputs:
     command: 'custom'
-    customCommand: 'run build-back:$(BuildConfiguration)'
+    customCommand: 'run build-back:${{ parameters.BuildConfiguration }}'
 
 - bash: sh -x ./shell/git-status.sh $(goldkeeper.GithubToken)
   displayName: 'Create GitHub status'

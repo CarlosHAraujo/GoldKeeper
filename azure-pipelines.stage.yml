@@ -8,11 +8,13 @@ trigger:
 - release/*
 - hotfix/*
 
-variables: 
-  BuildConfiguration: prod
+pool:
+  vmImage: 'VS2017-Win2016'
 
 steps:
 - template: azure-pipelines.base.yml
+  parameters:
+    BuildConfiguration: prod
 
 - task: Npm@1
   displayName: 'Test (back-end) Prod'
