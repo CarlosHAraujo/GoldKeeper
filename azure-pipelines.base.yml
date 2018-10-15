@@ -59,5 +59,5 @@ steps:
 
 - ${{ parameters.extraSteps }}
 
-- bash: sh -x ./shell/git-status.sh $(goldkeeper.GithubToken)
+- bash: sh -x ./shell/github-status.sh $(goldkeeper.GithubToken)
   displayName: 'Create GitHub status'

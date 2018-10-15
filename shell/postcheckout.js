@@ -3,7 +3,10 @@
 const shell = require('../node_modules/shelljs');
 const request  = require('../node_modules/request');
 const red = "\033[31m";
-const green = "\x1b[32m";
+const green = "\033[32m";
+const black = "\033[30m";
+const yellow = "\033[33m"
+const colorReset = "\033[0m";
 
 const branch = shell.exec('git rev-parse --abbrev-ref HEAD', {silent:true});
 
@@ -13,8 +16,8 @@ if (branch.code !== 0) {
 }
 
 const url = 'https://api.github.com/repos/carlosharaujo/goldkeeper/statuses/' + branch;
-const context = 'GoldKeeper-CI';
-let state;
+let stateMarker;
+let color;
 
 request.get({
     url: url,
@@ -28,22 +31,36 @@ request.get({
       console.log('Status:', res.statusCode);
     } else {
       try {
-        const status = JSON.parse(data);
-
-        if(status) {
-          const contextStatus = status.filter(function(value) { return value.context === context; });
-  
-          if(contextStatus && contextStatus.length > 0) {
-              const lastContext = contextStatus[0];
-              state = lastContext.state;
+        const statuses = JSON.parse(data);
+        if(statuses && statuses.length > 0) {
+          for (var i = 0; i < statuses.length; i++) {
+            let status = statuses[i];
+            switch (status.state) {
+              case "success":
+                stateMarker = "✔︎";
+                color = green;
+                break;
+              case "failure", "error", "action_required", "cancelled", "timed_out":
+                stateMarker = "✖︎"
+                color = red;
+              case "neutral":
+                stateMarker = "◦"
+                color = black;
+              case "pending":
+                stateMarker = "●"
+                color = yellow;
+            }
+                
+            stateMarker = color + stateMarker + colorReset;
+            console.log(stateMarker + '    ' + status.context + '    ' + status.target_url);
           }
-        } else {
+        }
+        else {
             console.log('No status for ' + branch);
         }
-      } catch {
+      }
+      catch {
           console.log('Error while parsing JSON response.');
       }
     }
-
-    console.log("Last CI build: " + (state == "success" ? green : red) + state);
 });
