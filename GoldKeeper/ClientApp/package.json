@@ -4,11 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "npm run build:dev",
+    "build:dev": "ng build",
     "build:prod": "ng build --prod",
-    "test": "ng test",
+    "test": "npm run test:dev",
+    "test:dev": "ng test",
     "test:prod": "ng test --prod",
-    "lint": "ng lint",
+    "lint": "npm run lint:dev",
+    "lint:dev": "ng lint",
     "lint:prod": "ng lint --configuration=production",
     "e2e": "ng e2e",
     "e2e:prod": "ng e2e --prod"

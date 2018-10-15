@@ -39,20 +39,23 @@ steps:
 - task: Npm@1
   displayName: 'Lint (front-end) $(BuildConfiguration)'
   inputs:
+    workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
-    customCommand: 'run lint-front:$(BuildConfiguration)'
+    customCommand: 'run lint:$(BuildConfiguration)'
 
 - task: Npm@1
   displayName: 'Build (front-end) $(BuildConfiguration)'
   inputs:
+    workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
-    customCommand: 'run build-front:$(BuildConfiguration)'
+    customCommand: 'run build:$(BuildConfiguration)'
 
 - task: Npm@1
   displayName: 'Test (front-end) $(BuildConfiguration)'
   inputs:
+    workingDir: './GoldKeeper/ClientApp/'
     command: 'custom'
-    customCommand: 'run test-front:$(BuildConfiguration)'
+    customCommand: 'run test:$(BuildConfiguration)'
 
 - ${{ parameters.extraSteps }}
 
