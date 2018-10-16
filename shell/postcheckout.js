@@ -8,16 +8,15 @@ const black = "\033[30m";
 const yellow = "\033[33m"
 const colorReset = "\033[0m";
 
-let commit = shell.exec('git rev-parse --verify HEAD', {silent:true});
+const { stdout, code } = shell.exec('git rev-parse HEAD', {silent:true});
 
-if (commit.code !== 0) {
+if (code !== 0) {
   shell.echo('Error: Get git commit failed');
   shell.exit(1);
 }
 
-commit = commit.stdout;
-
-const url = 'https://api.github.com/repos/carlosharaujo/goldkeeper/commits/' + commit + '/check-runs';
+const commit = stdout.replace('\n', '');
+const url = `https://api.github.com/repos/carlosharaujo/goldkeeper/commits/${commit}/check-runs`;
 let stateMarker;
 let color;
 
@@ -37,11 +36,11 @@ request.get({
       console.log('Status:', res.statusCode);
     } else {
       try {
-        const statuses = data;
+        const statuses = data.check_runs;
         if(statuses && statuses.length > 0) {
           for (var i = 0; i < statuses.length; i++) {
             let status = statuses[i];
-            switch (status.state) {
+            switch (status.conclusion) {
               case "success":
                 stateMarker = "✔︎";
                 color = green;
@@ -58,7 +57,7 @@ request.get({
             }
                 
             stateMarker = color + stateMarker + colorReset;
-            console.log(stateMarker + '    ' + status.context + '    ' + status.target_url);
+            console.log(stateMarker + '    ' + status.name + '    ' + status.html_url);
           }
         }
         else {
