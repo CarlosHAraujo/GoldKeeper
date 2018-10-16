@@ -64,8 +64,8 @@ request.get({
                 break;
             }
                 
-            stateMarker = color + stateMarker + state + colorReset;
-            console.log(stateMarker + '    ' + status.name + '    ' + status.html_url);
+            stateMarker = `${color}${stateMarker} ${state}${colorReset}`;
+            console.log(`${stateMarker}    ${status.name}    ${status.html_url}`);
           }
         }
         else {
