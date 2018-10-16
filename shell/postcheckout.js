@@ -40,7 +40,11 @@ request.get({
         if(statuses && statuses.length > 0) {
           for (var i = 0; i < statuses.length; i++) {
             let status = statuses[i];
-            switch (status.conclusion) {
+            let state = 'pending';
+            if (status.status === 'completed') {
+              state = status.conclusion;
+            }
+            switch (state) {
               case "success":
                 stateMarker = "✔︎";
                 color = green;
