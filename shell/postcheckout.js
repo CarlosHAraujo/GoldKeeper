@@ -27,53 +27,51 @@ request.get({
       'User-Agent': 'request'
     }
   }, (err, res, data) => {
-    data = JSON.parse(data);
     if (err) {
       console.log('Error:', err);
-    } else if (res.statusCode === 422) {
-      console.log(data.message);
-    } else if (res.statusCode !== 200) {
-      console.log('Status:', res.statusCode);
-    } else {
-      try {
-        const statuses = data.check_runs;
-        if(statuses && statuses.length > 0) {
-          for (var i = 0; i < statuses.length; i++) {
-            let status = statuses[i];
-            let state = 'pending';
-            if (status.status === 'completed') {
-              state = status.conclusion;
-            }
-            switch (state) {
-              case "success":
-                stateMarker = "✔︎";
-                color = green;
-                break;
-              case "failure": case "error": case "action_required": case "timed_out":
-                stateMarker = "✖︎"
-                color = red;
-                break; 
-              case "cancelled":
-              case "neutral":
-                stateMarker = "◦"
-                color = black;
-                break;
-              case "pending":
-                stateMarker = "●"
-                color = yellow;
-                break;
-            }
-                
-            stateMarker = `${color}${stateMarker} ${state}${colorReset}`;
-            console.log(`${stateMarker}    ${status.name}    ${status.html_url}`);
-          }
-        }
-        else {
-            console.log('No status for ' + commit);
-        }
-      }
-      catch {
-          console.log('Error while parsing JSON response.');
-      }
     }
+    try {
+      data = JSON.parse(data);        
+    }
+    catch {
+        console.log('Error while parsing JSON response.');
+        return;
+    }
+    var hasStatus = (res.statusCode === 200 && data.total_count > 0);
+    if (hasStatus) {
+      const statuses = data.check_runs;
+      for (var i = 0; i < statuses.length; i++) {
+        let status = statuses[i];
+        let state = 'pending';
+        
+        if (status.status === 'completed') {
+          state = status.conclusion;
+        }
+
+        switch (state) {
+          case "success":
+            stateMarker = "✔︎";
+            color = green;
+            break;
+          case "failure": case "error": case "action_required": case "timed_out":
+            stateMarker = "✖︎"
+            color = red;
+            break; 
+          case "cancelled":
+          case "neutral":
+            stateMarker = "◦"
+            color = black;
+            break;
+          case "pending":
+            stateMarker = "●"
+            color = yellow;
+            break;
+        }
+            
+        stateMarker = `${color}${stateMarker} ${state}${colorReset}`;
+        console.log(`${stateMarker}    ${status.name}    ${status.html_url}`);
+      }
+  } else {
+    console.log('No status. You may need to push your changes.');
+  }
 });

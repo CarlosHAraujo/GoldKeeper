@@ -58,6 +58,3 @@ steps:
     customCommand: 'run test:$(BuildConfiguration)'
 
 - ${{ parameters.extraSteps }}
-
-- bash: sh -x ./shell/github-status.sh $(goldkeeper.GithubToken)
-  displayName: 'Create GitHub status'
