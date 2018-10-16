@@ -7,20 +7,34 @@
     "Carlos Araujo <carlinhosmillenium@yahoo.com.br>"
   ],
   "scripts": {
-    "build-back": "dotnet build --no-incremental -warnaserror",
+    "build-back": "npm run build-back:dev",
+    "build-back:dev": "dotnet build --no-incremental -warnaserror",
     "build-back:prod": "dotnet build -c Release --no-incremental -warnaserror",
-    "build-front": "pushd ./GoldKeeper/ClientApp/ && npm run build",
+
+    "build-front": "npm run build-front:dev",
+    "build-front:dev": "pushd ./GoldKeeper/ClientApp/ && npm run build",
     "build-front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run build:prod",
-    "build": "npm run build-back && npm run build-front",
+
+    "build": "npm run build:dev",
+    "build:dev": "npm run build-back:dev && npm run build-front:dev",
     "build:prod": "npm run build-back:prod && npm run build-front:prod",
-    "test-back": "dotnet test",
+
+    "test-back": "npm run test-back:dev",
+    "test-back:dev": "dotnet test",
     "test-back:prod": "dotnet test -c Release",
-    "test-front": "pushd ./GoldKeeper/ClientApp/ && npm run test",
+
+    "test-front": "npm run test-front:dev",
+    "test-front:dev": "pushd ./GoldKeeper/ClientApp/ && npm run test",
     "test-front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run test:prod",
-    "test": "npm run test-back && npm run test-front",
+
+    "test": "npm run test:dev",
+    "test:dev": "npm run test-back:dev && npm run test-front:dev",
     "test:prod": "npm run test-back:prod && npm run test-front:prod",
-    "lint-front": "pushd ./GoldKeeper/ClientApp/ && npm run lint",
+
+    "lint-front": "npm run lint-front:dev",
+    "lint-front:dev": "pushd ./GoldKeeper/ClientApp/ && npm run lint",
     "lint-front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run lint:prod",
+
     "commitmsg": "./shell/commitmsg.sh",
     "prepush": "./shell/prepush.sh",
     "postcheckout": "node ./shell/postcheckout.js"

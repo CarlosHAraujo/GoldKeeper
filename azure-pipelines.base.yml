@@ -1,0 +1,60 @@
+# Base build definition
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
+
+parameters:
+  extraSteps: []
+
+steps:
+- task: NuGetToolInstaller@0
+
+- task: DotNetCoreCLI@2
+  displayName: Install Nerdbank.GitVersioning tool
+  inputs:
+    command: custom
+    custom: tool
+    arguments: install --tool-path . nbgv
+
+- script: nbgv cloud
+  displayName: Set Version
+
+- task: Npm@1
+  displayName: 'Build (back-end) $(BuildConfiguration)'
+  inputs:
+    command: 'custom'
+    customCommand: 'run build-back:$(BuildConfiguration)'
+
+- task: Npm@1
+  displayName: 'Test (back-end) $(BuildConfiguration)'
+  inputs:
+    command: 'custom'
+    customCommand: 'run test-back:$(BuildConfiguration)'
+
+- task: Npm@1
+  displayName: 'npm install (front-end)'
+  inputs:
+    workingDir: './GoldKeeper/ClientApp/'
+    command: 'install'
+
+- task: Npm@1
+  displayName: 'Lint (front-end) $(BuildConfiguration)'
+  inputs:
+    workingDir: './GoldKeeper/ClientApp/'
+    command: 'custom'
+    customCommand: 'run lint:$(BuildConfiguration)'
+
+- task: Npm@1
+  displayName: 'Build (front-end) $(BuildConfiguration)'
+  inputs:
+    workingDir: './GoldKeeper/ClientApp/'
+    command: 'custom'
+    customCommand: 'run build:$(BuildConfiguration)'
+
+- task: Npm@1
+  displayName: 'Test (front-end) $(BuildConfiguration)'
+  inputs:
+    workingDir: './GoldKeeper/ClientApp/'
+    command: 'custom'
+    customCommand: 'run test:$(BuildConfiguration)'
+
+- ${{ parameters.extraSteps }}

@@ -3,6 +3,7 @@
 # https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
 
 name: GoldKeeper-CI-STAGE
+
 trigger:
 - release/*
 - hotfix/*
@@ -10,55 +11,16 @@ trigger:
 pool:
   vmImage: 'VS2017-Win2016'
 
+variables:
+  BuildConfiguration: 'prod'
+
 steps:
-- task: NuGetToolInstaller@0
-
-- task: Npm@1
-  displayName: 'Build (back-end) Prod'
-  inputs:
-    command: 'custom'
-    customCommand: 'run build-back:prod'
-
-- task: Npm@1
-  displayName: 'Test (back-end) Prod'
-  inputs:
-    command: 'custom'
-    customCommand: 'run test-back:prod'
-
-- task: Npm@1
-  displayName: 'npm install (front-end)'
-  inputs:
-    workingDir: './GoldKeeper/ClientApp/'
-    command: 'install'
-
-- task: Npm@1
-  displayName: 'Lint (front-end) Prod'
-  inputs:
-    workingDir: './GoldKeeper/ClientApp/'
-    command: 'custom'
-    customCommand: 'run lint:prod'
-
-- task: Npm@1
-  displayName: 'Build (front-end) Prod'
-  inputs:
-    workingDir: './GoldKeeper/ClientApp/'
-    command: 'custom'
-    customCommand: 'run build:prod'
-
-- task: Npm@1
-  displayName: 'Test (front-end) Prod'
-  inputs:
-    workingDir: './GoldKeeper/ClientApp/'
-    command: 'custom'
-    customCommand: 'run test:prod'
-    
-- task: Npm@1
-  displayName: 'e2e Test (front-end) Prod'
-  inputs:
-    workingDir: './GoldKeeper/ClientApp/'
-    command: 'custom'
-    customCommand: 'run e2e:prod'
-
-- bash: sh -x ./shell/git-status.sh
-  displayName: 'Create GitHub status'
-  
+- template: azure-pipelines.base.yml
+  parameters:
+    extraSteps:    
+    - task: Npm@1
+      displayName: 'e2e Test (front-end) Prod'
+      inputs:
+        workingDir: './GoldKeeper/ClientApp/'
+        command: 'custom'
+        customCommand: 'run e2e:prod'
