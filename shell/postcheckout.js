@@ -4,7 +4,7 @@ const shell = require('../node_modules/shelljs');
 const request  = require('../node_modules/request');
 const red = "\033[31m";
 const green = "\033[32m";
-const black = "\033[30m";
+const black = "\033[90m";
 const yellow = "\033[33m"
 const colorReset = "\033[0m";
 
@@ -49,18 +49,22 @@ request.get({
                 stateMarker = "✔︎";
                 color = green;
                 break;
-              case "failure", "error", "action_required", "cancelled", "timed_out":
+              case "failure": case "error": case "action_required": case "timed_out":
                 stateMarker = "✖︎"
                 color = red;
+                break; 
+              case "cancelled":
               case "neutral":
                 stateMarker = "◦"
                 color = black;
+                break;
               case "pending":
                 stateMarker = "●"
                 color = yellow;
+                break;
             }
                 
-            stateMarker = color + stateMarker + colorReset;
+            stateMarker = color + stateMarker + state + colorReset;
             console.log(stateMarker + '    ' + status.name + '    ' + status.html_url);
           }
         }
