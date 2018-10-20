@@ -1,1 +1,1 @@
-commitlint -E GIT_PARAMS
+commitlint -E HUSKY_GIT_PARAMS
