@@ -1,6 +1,6 @@
 {
     "name": "goldkeeper",
-    "version": "0.0-placeholder",
+    "version": "0.0.0-placeholder",
     "description": "Finance and Savings app",
     "main": "index.js",
     "contributors": [
