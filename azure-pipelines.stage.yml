@@ -1,0 +1,26 @@
+# Build for Staging environment
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/vsts/pipelines/apps/windows/dot-net
+
+name: GoldKeeper-CI-STAGE
+
+trigger:
+- release/*
+- hotfix/*
+
+pool:
+  vmImage: 'VS2017-Win2016'
+
+variables:
+  BuildConfiguration: 'prod'
+
+steps:
+- template: azure-pipelines.base.yml
+  parameters:
+    extraSteps:    
+    - task: Npm@1
+      displayName: 'e2e Test (front-end) Prod'
+      inputs:
+        workingDir: './GoldKeeper/ClientApp/'
+        command: 'custom'
+        customCommand: 'run e2e:prod'
