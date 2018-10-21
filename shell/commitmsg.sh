@@ -1,1 +1,0 @@
-commitlint -E HUSKY_GIT_PARAMS

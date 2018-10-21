@@ -29,13 +29,14 @@ request.get({
   }, (err, res, data) => {
     if (err) {
       console.log('Error:', err);
+      process.exit(1);
     }
     try {
       data = JSON.parse(data);        
     }
     catch {
         console.log('Error while parsing JSON response.');
-        return;
+        process.exit(1);
     }
     var hasStatus = (res.statusCode === 200 && data.total_count > 0);
     if (hasStatus) {

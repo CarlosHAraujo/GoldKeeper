@@ -2,4 +2,7 @@
 
 const nbgv = require('nerdbank-gitversioning');
 
-return nbgv.setPackageVersion();
+nbgv.setPackageVersion()
+    .catch(err => {
+        process.exit(1);
+    });
