@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0017981E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldKeeperTest", "Tests\GoldKeeperTest\GoldKeeperTest.csproj", "{A0CDBD2E-E9AB-41AE-B300-044F096E6291}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{F2274052-2974-4D7B-BF00-610777CE6217}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{A0CDBD2E-E9AB-41AE-B300-044F096E6291}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0CDBD2E-E9AB-41AE-B300-044F096E6291}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0CDBD2E-E9AB-41AE-B300-044F096E6291}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2274052-2974-4D7B-BF00-610777CE6217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2274052-2974-4D7B-BF00-610777CE6217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2274052-2974-4D7B-BF00-610777CE6217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2274052-2974-4D7B-BF00-610777CE6217}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
