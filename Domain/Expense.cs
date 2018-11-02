@@ -13,6 +13,6 @@ namespace Domain
         public IEnumerable<ExtraCost> ExtraCosts { get; private set; }
         public decimal Discount { get; private set; }
         public decimal GrandTotal { get { return Products.Sum(x => x.Price) + ExtraCosts.Sum(x => x.Value) - Discount; } }
-        public IEnumerable<Payment> PaymentMethod { get; private set; }
+        public IEnumerable<PaymentMethod> PaymentMethod { get; private set; }
     }
 }
