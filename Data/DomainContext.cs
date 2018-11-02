@@ -12,5 +12,6 @@ namespace Data
         public virtual DbSet<Expense> Expenses { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Cost> Costs { get; set; }
+        public virtual DbSet<Payment> Payments { get; set; }
     }
 }
