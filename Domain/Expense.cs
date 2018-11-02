@@ -9,7 +9,7 @@ namespace Domain
         public Company Company { get; private set; }
         public DateTime Date { get; private set; }
         public IEnumerable<Product> Products { get; private set; }
-        public IEnumerable<Cost> ExtraCosts { get; private set; }
+        public IEnumerable<ExtraCost> ExtraCosts { get; private set; }
         public decimal Discount { get; private set; }
         public decimal GrandTotal { get; private set; }
         public IEnumerable<Payment> PaymentMethod { get; private set; }
