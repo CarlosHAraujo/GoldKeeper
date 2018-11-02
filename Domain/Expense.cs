@@ -5,12 +5,13 @@ namespace Domain
 {
     public class Expense
     {
-        public Company Company { get; set; }
-        public DateTime Date { get; set; }
-        public IEnumerable<Product> Products { get; set; }
-        public IEnumerable<Cost> ExtraCosts { get; set; }
-        public decimal Discount { get; set; }
-        public decimal GrandTotal { get; set; }
-        public IEnumerable<Payment> PaymentMethod { get; set; }
+        public int Id { get; private set; }
+        public Company Company { get; private set; }
+        public DateTime Date { get; private set; }
+        public IEnumerable<Product> Products { get; private set; }
+        public IEnumerable<Cost> ExtraCosts { get; private set; }
+        public decimal Discount { get; private set; }
+        public decimal GrandTotal { get; private set; }
+        public IEnumerable<Payment> PaymentMethod { get; private set; }
     }
 }
