@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldKeeperTest", "Tests\Gol
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{F2274052-2974-4D7B-BF00-610777CE6217}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{BB009ED6-46BF-49C0-B7F6-6BF9AD183E86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{BB009ED6-46BF-49C0-B7F6-6BF9AD183E86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainTest", "DomainTest\DomainTest.csproj", "{91B96C71-D569-4D53-8610-A2D38FF2124A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,12 +37,17 @@ Global
 		{BB009ED6-46BF-49C0-B7F6-6BF9AD183E86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB009ED6-46BF-49C0-B7F6-6BF9AD183E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB009ED6-46BF-49C0-B7F6-6BF9AD183E86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91B96C71-D569-4D53-8610-A2D38FF2124A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91B96C71-D569-4D53-8610-A2D38FF2124A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91B96C71-D569-4D53-8610-A2D38FF2124A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91B96C71-D569-4D53-8610-A2D38FF2124A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A0CDBD2E-E9AB-41AE-B300-044F096E6291} = {0017981E-2605-49A7-B68F-5293D8760606}
+		{91B96C71-D569-4D53-8610-A2D38FF2124A} = {0017981E-2605-49A7-B68F-5293D8760606}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3A6EF1CB-8C9D-43F0-9F3A-5F9930915F1B}
