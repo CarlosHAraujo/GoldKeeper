@@ -1,4 +1,6 @@
-﻿namespace Domain
+﻿using System;
+
+namespace Domain
 {
     public class Item
     {
@@ -9,7 +11,7 @@
         public Item(int productId, decimal value, int quantity)
         {
             ProductId = productId;
-            Value = value;
+            Value = Math.Abs(value);
             Quantity = quantity;
         }
 

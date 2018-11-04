@@ -1,4 +1,6 @@
-﻿namespace Domain
+﻿using System;
+
+namespace Domain
 {
     public class Payment
     {
@@ -9,7 +11,7 @@
         public Payment(int methodId, decimal value)
         {
             MethodId = methodId;
-            Value = value;
+            Value = Math.Abs(value);
         }
 
         public int Id { get; private set; }

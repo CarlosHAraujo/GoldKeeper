@@ -1,4 +1,6 @@
-﻿namespace Domain
+﻿using System;
+
+namespace Domain
 {
     public class ExtraCost
     {
@@ -9,7 +11,7 @@
         public ExtraCost(int costId, decimal value)
         {
             CostId = costId;
-            Value = value;
+            Value = Math.Abs(value);
         }
 
         public int Id { get; private set; }

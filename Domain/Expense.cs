@@ -16,9 +16,9 @@ namespace Domain
 
         public Expense(Company company, DateTime date, decimal discount = 0)
         {
-            Company = company;
+            Company = company ?? throw new ArgumentNullException(nameof(company));
             Date = date;
-            Discount = discount;
+            Discount = Math.Abs(discount);
         }
 
         public int Id { get; private set; }
@@ -30,19 +30,25 @@ namespace Domain
         public IReadOnlyList<ExtraCost> ExtraCosts { get { return _extraCosts.AsReadOnly(); } }
         public IReadOnlyList<Item> Items { get { return _items.AsReadOnly(); } }
 
-        public void AddItems(IEnumerable<(int productId, decimal value, int quantity)> itens)
+        public Item AddItem(int productId, decimal value, int quantity)
         {
-            _items.AddRange(itens.Select(i => new Item(i.productId, i.value, i.quantity)));
+            var item = new Item(productId, value, quantity);
+            _items.Add(item);
+            return item;
         }
 
-        public void AddPayments(IEnumerable<(int paymentId, decimal value)> payments)
+        public Payment AddPayment(int methodId, decimal value)
         {
-            _payments.AddRange(payments.Select(p => new Payment(p.paymentId, p.value)));
+            var payment = new Payment(methodId, value);
+            _payments.Add(payment);
+            return payment;
         }
 
-        public void AddExtraCosts(IEnumerable<(int costId, decimal value)> extraCosts)
+        public ExtraCost AddExtraCost(int costId, decimal value)
         {
-            _extraCosts.AddRange(extraCosts.Select(c => new ExtraCost(c.costId, c.value)));
+            var extraCost = new ExtraCost(costId, value);
+            _extraCosts.Add(extraCost);
+            return extraCost;
         }
     }
 }
