@@ -14,18 +14,19 @@ namespace Domain
         {
         }
 
-        public Expense(Company company, DateTime date, decimal discount = 0)
+        public Expense(int companyId, DateTime date, decimal discount = 0)
         {
-            Company = company ?? throw new ArgumentNullException(nameof(company));
+            CompanyId = companyId;
             Date = date;
             Discount = Math.Abs(discount);
         }
 
         public int Id { get; private set; }
-        public Company Company { get; private set; }
         public DateTime Date { get; private set; }
         public decimal Discount { get; private set; }
         public decimal GrandTotal { get { return _items.Sum(x => x.Total) + _extraCosts.Sum(x => x.Value) - Discount; } }
+        public int? CompanyId { get; private set; }
+        public Company Company { get; private set; }
         public IReadOnlyList<Payment> Payments { get { return _payments.AsReadOnly(); } }
         public IReadOnlyList<ExtraCost> ExtraCosts { get { return _extraCosts.AsReadOnly(); } }
         public IReadOnlyList<Item> Items { get { return _items.AsReadOnly(); } }
