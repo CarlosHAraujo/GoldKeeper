@@ -8,13 +8,6 @@ namespace DomainTest
 {
     public class ExpenseTest
     {
-        [Fact]
-        public void Should_ThrowArgumentNullException_When_CompanyIsNull()
-        {
-            Exception ex = Assert.Throws<ArgumentNullException>(() => new Expense(null, default(DateTime)));
-            Assert.Contains("company", ex.Message);
-        }
-
         [Theory]
         [MemberData(nameof(GetDiscountSample))]
         public void Should_DiscontBePositive_When_AnyValueIsPassed(decimal discount)
@@ -66,7 +59,7 @@ namespace DomainTest
 
         private static Expense GetGoodExpense(decimal discount = 0)
         {
-            return new Expense(new Company(), default(DateTime), discount);
+            return new Expense(1, default(DateTime), discount);
         }
 
         public static IEnumerable<object[]> GetDiscountSample()
