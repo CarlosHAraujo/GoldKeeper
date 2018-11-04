@@ -1,6 +1,6 @@
 {
   "name": "goldkeeper",
-  "version": "0.1.0-beta-g8f73965839",
+  "version": "0.1.0-beta-g5f24dfd584",
   "description": "Finance and Savings app",
   "main": "index.js",
   "contributors": [
@@ -21,8 +21,8 @@
     "start:prod": "npm run start:back:prod & npm run start:front:prod",
     "build:back": "npm run build:back:dev",
     "build:back:dev": "dotnet build --no-incremental -warnaserror",
-    "build:back:stage": "dotnet build --environment 'Staging' -c Release --no-incremental -warnaserror",
-    "build:back:prod": "dotnet build --environment 'Production' -c Release --no-incremental -warnaserror",
+    "build:back:stage": "dotnet build -c Release --no-incremental -warnaserror",
+    "build:back:prod": "dotnet build -c Release --no-incremental -warnaserror",
     "build:front": "npm run build:front:dev",
     "build:front:dev": "pushd ./GoldKeeper/ClientApp/ && npm run build",
     "build:front:stage": "pushd ./GoldKeeper/ClientApp/ && npm run build:stage",
