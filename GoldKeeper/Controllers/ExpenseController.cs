@@ -35,7 +35,7 @@ namespace GoldKeeper.Controllers
 
             var entity = await _context.Expenses.AddAsync(expense, cancellationToken);
 
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
 
             return Ok(entity.Entity);
         }
