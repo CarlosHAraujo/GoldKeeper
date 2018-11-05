@@ -10,7 +10,7 @@ namespace Domain
 
         public Company(string name)
         {
-            this.Name = name.CheckEmptyOrWhiteSpace();
+            this.Name = name.CheckNullOrWhiteSpace();
         }
 
         public int Id { get; private set; }

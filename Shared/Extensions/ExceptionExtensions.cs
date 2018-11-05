@@ -12,7 +12,7 @@ namespace Shared.Extensions
         /// </summary>
         /// <param name="value">The string to check.</param>
         /// <returns><paramref name="value"/></returns>
-        public static string CheckEmptyOrWhiteSpace(this string value)
+        public static string CheckNullOrWhiteSpace(this string value)
         {
             if (value == null)
             {
