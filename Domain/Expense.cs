@@ -45,9 +45,9 @@ namespace Domain
             return payment;
         }
 
-        public ExtraCost AddExtraCost(int costId, decimal value)
+        public ExtraCost AddExtraCost(string cost, decimal value)
         {
-            var extraCost = new ExtraCost(costId, value);
+            var extraCost = new ExtraCost(cost, value);
             _extraCosts.Add(extraCost);
             return extraCost;
         }

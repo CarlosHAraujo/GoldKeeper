@@ -11,8 +11,11 @@ namespace Data
 
         public virtual DbSet<Expense> Expenses { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
-        public virtual DbSet<Cost> Costs { get; set; }
         public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+        }
     }
 }

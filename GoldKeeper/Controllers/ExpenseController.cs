@@ -31,7 +31,7 @@ namespace GoldKeeper.Controllers
 
             Array.ForEach(model.Items.ToArray(), i => expense.AddItem(i.ProductId, i.Value, i.Quantity));
 
-            Array.ForEach(model.ExtraCosts.ToArray(), ec => expense.AddExtraCost(ec.CostId, ec.Value));
+            Array.ForEach(model.ExtraCosts.ToArray(), ec => expense.AddExtraCost(ec.Cost, ec.Value));
 
             var entity = await _context.Expenses.AddAsync(expense, cancellationToken);
 

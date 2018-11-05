@@ -18,10 +18,10 @@ namespace DomainTest
 
         [Theory]
         [MemberData(nameof(GetExtraCostSample))]
-        public void Should_ExtraCostsValueBePositive_When_AnyValueIsPassed(int costId, decimal value)
+        public void Should_ExtraCostsValueBePositive_When_AnyValueIsPassed(string cost, decimal value)
         {
             var expense = GetGoodExpense();
-            var extraCost = expense.AddExtraCost(costId, value);
+            var extraCost = expense.AddExtraCost(cost, value);
             Assert.True(extraCost.Value >= 0);
             Assert.Contains(extraCost, expense.ExtraCosts);
         }
@@ -75,7 +75,7 @@ namespace DomainTest
 
         public static IEnumerable<object[]> GetExtraCostSample()
         {
-            return Common.GetDecimalSample().ToList().Select(x => (new object[] { 1, x }));
+            return Common.GetDecimalSample().ToList().Select(x => (new object[] { string.Empty, x }));
         }
 
         public static IEnumerable<object[]> GetPaymentSample()

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace GoldKeeper.Models
 {
@@ -32,8 +33,8 @@ namespace GoldKeeper.Models
 
         public class ExtraCostModel
         {
-            [JsonRequired]
-            public int CostId { get; set; }
+            [Required(AllowEmptyStrings = false)]
+            public string Cost { get; set; }
 
             [JsonRequired]
             public decimal Value { get; set; }

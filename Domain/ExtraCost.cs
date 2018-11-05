@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shared.Extensions;
+using System;
 
 namespace Domain
 {
@@ -8,15 +9,14 @@ namespace Domain
         {
         }
 
-        public ExtraCost(int costId, decimal value)
+        public ExtraCost(string cost, decimal value)
         {
-            CostId = costId;
+            Cost = cost.CheckNullOrWhiteSpace();
             Value = Math.Abs(value);
         }
 
         public int Id { get; private set; }
         public decimal Value { get; private set; }
-        public int CostId { get; private set; }
-        public Cost Cost { get; private set; }
+        public string Cost { get; private set; }
     }
 }
