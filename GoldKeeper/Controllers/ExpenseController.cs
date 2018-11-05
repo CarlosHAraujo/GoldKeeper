@@ -2,7 +2,6 @@
 using Domain;
 using GoldKeeper.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading;
@@ -22,11 +21,11 @@ namespace GoldKeeper.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
         public async Task<ActionResult<Expense>> Post(PostExpenseModel model, CancellationToken cancellationToken)
         {
-            var company = await _context.Companies.SingleAsync(x => x.Id == model.CompanyId);
-
-            var expense = new Expense(company, model.Date.Value, model.Discount.Value);
+            var expense = new Expense(model.CompanyId.Value, model.Date.Value, model.Discount.Value);
 
             Array.ForEach(model.Payments.ToArray(), p => expense.AddPayment(p.MethodId.Value, p.Value.Value));
 
@@ -36,7 +35,9 @@ namespace GoldKeeper.Controllers
 
             var entity = await _context.Expenses.AddAsync(expense, cancellationToken);
 
-            return Ok(entity);
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }
