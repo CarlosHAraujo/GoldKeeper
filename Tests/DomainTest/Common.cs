@@ -12,5 +12,14 @@ namespace DomainTest
             yield return decimal.One;
             yield return decimal.Zero;
         }
+
+        public static IEnumerable<string> GetEmptyOrNullStringSample()
+        {
+            yield return " ";
+            yield return "";
+            yield return null;
+            yield return string.Empty;
+            yield return default(string);
+        }
     }
 }
