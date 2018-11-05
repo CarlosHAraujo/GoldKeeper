@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DomainTest
 {
@@ -20,6 +21,11 @@ namespace DomainTest
             yield return null;
             yield return string.Empty;
             yield return default(string);
+        }
+
+        public static List<Type> GetExpectedExceptionsForMissingParameter()
+        {
+            return new List<Type>() { typeof(ArgumentException), typeof(ArgumentNullException) };
         }
     }
 }

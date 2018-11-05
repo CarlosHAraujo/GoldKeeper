@@ -6,13 +6,13 @@ using Xunit;
 
 namespace DomainTest
 {
-    public class CompanyTest
+    public class ProductTest
     {
         [Theory]
         [MemberData(nameof(GetNameSample))]
         public void Should_Throw_When_NameIsMissing(string name)
         {
-            var ex = Assert.ThrowsAny<Exception>(() => new Company(name));
+            var ex = Assert.ThrowsAny<Exception>(() => new Product(name));
             Assert.Contains(ex.GetType(), Common.GetExpectedExceptionsForMissingParameter());
             Assert.Contains(nameof(name), ex.Message);
         }
