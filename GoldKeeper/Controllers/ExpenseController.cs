@@ -25,13 +25,13 @@ namespace GoldKeeper.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult<Expense>> Post(PostExpenseModel model, CancellationToken cancellationToken)
         {
-            var expense = new Expense(model.CompanyId.Value, model.Date.Value, model.Discount.Value);
+            var expense = new Expense(model.CompanyId, model.Date, model.Discount);
 
-            Array.ForEach(model.Payments.ToArray(), p => expense.AddPayment(p.MethodId.Value, p.Value.Value));
+            Array.ForEach(model.Payments.ToArray(), p => expense.AddPayment(p.MethodId, p.Value));
 
-            Array.ForEach(model.Items.ToArray(), i => expense.AddItem(i.ProductId.Value, i.Value.Value, i.Quantity.Value));
+            Array.ForEach(model.Items.ToArray(), i => expense.AddItem(i.ProductId, i.Value, i.Quantity));
 
-            Array.ForEach(model.ExtraCosts.ToArray(), ec => expense.AddExtraCost(ec.CostId.Value, ec.Value.Value));
+            Array.ForEach(model.ExtraCosts.ToArray(), ec => expense.AddExtraCost(ec.CostId, ec.Value));
 
             var entity = await _context.Expenses.AddAsync(expense, cancellationToken);
 

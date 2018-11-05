@@ -27,23 +27,23 @@ namespace GoldKeeperTest
             var expense = Assert.IsType<Expense>(okResult.Value);
             Assert.Equal(postedData.CompanyId, expense.CompanyId);
             Assert.Equal(postedData.Date, expense.Date);
-            Assert.Equal(Math.Abs(postedData.Discount.Value), expense.Discount);
+            Assert.Equal(Math.Abs(postedData.Discount), expense.Discount);
 
             ExtraCostModel postedExtraCost = postedData.ExtraCosts.First();
             ExtraCost savedExtraCost = expense.ExtraCosts.First();
             Assert.Equal(postedExtraCost.CostId, savedExtraCost.CostId);
-            Assert.Equal(Math.Abs(postedExtraCost.Value.Value), savedExtraCost.Value);
+            Assert.Equal(Math.Abs(postedExtraCost.Value), savedExtraCost.Value);
 
             ItemModel postedItem = postedData.Items.First();
             Item savedItem = expense.Items.First();
             Assert.Equal(postedItem.ProductId, savedItem.ProductId);
             Assert.Equal(postedItem.Quantity, savedItem.Quantity);
-            Assert.Equal(Math.Abs(postedItem.Value.Value), savedItem.Value);
+            Assert.Equal(Math.Abs(postedItem.Value), savedItem.Value);
 
             PaymentModel postedPayment = postedData.Payments.First();
             Payment savedPayment = expense.Payments.First();
             Assert.Equal(postedPayment.MethodId, savedPayment.MethodId);
-            Assert.Equal(Math.Abs(postedPayment.Value.Value), savedPayment.Value);
+            Assert.Equal(Math.Abs(postedPayment.Value), savedPayment.Value);
         }
 
         public static IEnumerable<object[]> GetPostExpenseSample()
