@@ -14,11 +14,8 @@ namespace Shared.Extensions
         /// <returns><paramref name="value"/></returns>
         public static string CheckNullOrWhiteSpace(this string value)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
-            if (value == string.Empty)
+            value = value ?? throw new ArgumentNullException(nameof(value));
+            if (string.IsNullOrWhiteSpace(value))
             {
                 throw new ArgumentException("Argument must not be the empty string.", nameof(value));
             }

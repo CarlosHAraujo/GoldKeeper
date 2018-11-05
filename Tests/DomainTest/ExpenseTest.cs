@@ -24,6 +24,7 @@ namespace DomainTest
             var extraCost = expense.AddExtraCost(cost, value);
             Assert.True(extraCost.Value >= 0);
             Assert.Contains(extraCost, expense.ExtraCosts);
+            Assert.Equal(cost, extraCost.Cost);
         }
 
         [Theory]
@@ -75,7 +76,7 @@ namespace DomainTest
 
         public static IEnumerable<object[]> GetExtraCostSample()
         {
-            return Common.GetDecimalSample().ToList().Select(x => (new object[] { string.Empty, x }));
+            return Common.GetDecimalSample().ToList().Select(x => (new object[] { "Dummy Cost", x }));
         }
 
         public static IEnumerable<object[]> GetPaymentSample()

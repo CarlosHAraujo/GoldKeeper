@@ -12,7 +12,9 @@ namespace DomainTest
         [MemberData(nameof(GetNameSampleData))]
         public void Should_ThrowArgumentNullException_When_NameIsMissing(string name)
         {
-            Assert.Throws<ArgumentNullException>("name", () => new Company(name));
+            var expectedExceptions = new List<Type>() { typeof(ArgumentException), typeof(ArgumentNullException) };
+            var ex = Assert.ThrowsAny<Exception>(() => new Company(name));
+            Assert.Contains(ex.GetType(), expectedExceptions);
         }
 
         public static IEnumerable<object[]> GetNameSampleData()

@@ -55,7 +55,7 @@ namespace GoldKeeperTest
                     CompanyId = 1,
                     Date = default(DateTime),
                     Discount = 0,
-                    ExtraCosts = new List<ExtraCostModel>() { new ExtraCostModel { Cost = string.Empty, Value = 0 } },
+                    ExtraCosts = new List<ExtraCostModel>() { new ExtraCostModel { Cost = "Dummy Cost", Value = 0 } },
                     Items = new List<ItemModel>() { new ItemModel { ProductId = 1, Quantity = 1, Value = 0 } },
                     Payments = new List<PaymentModel> { new PaymentModel { MethodId = 1, Value = 0 } }
                 }
@@ -67,7 +67,7 @@ namespace GoldKeeperTest
                     CompanyId = -1,
                     Date = DateTime.Now,
                     Discount = -1,
-                    ExtraCosts = new List<ExtraCostModel>() { new ExtraCostModel { Cost = string.Empty, Value = -1 } },
+                    ExtraCosts = new List<ExtraCostModel>() { new ExtraCostModel { Cost = "Dummy Cost", Value = -1 } },
                     Items = new List<ItemModel>() { new ItemModel { ProductId = -1, Quantity = -1, Value = -1 } },
                     Payments = new List<PaymentModel> { new PaymentModel { MethodId = -1, Value = -1 } }
                 }
@@ -79,7 +79,7 @@ namespace GoldKeeperTest
                     CompanyId = int.MaxValue,
                     Date = DateTime.MaxValue,
                     Discount = int.MaxValue,
-                    ExtraCosts = new List<ExtraCostModel>() { new ExtraCostModel { Cost = string.Empty, Value = decimal.MaxValue } },
+                    ExtraCosts = new List<ExtraCostModel>() { new ExtraCostModel { Cost = "Dummy Cost", Value = decimal.MaxValue } },
                     Items = new List<ItemModel>() { new ItemModel { ProductId = int.MaxValue, Quantity = int.MaxValue, Value = decimal.MaxValue } },
                     Payments = new List<PaymentModel> { new PaymentModel { MethodId = int.MaxValue, Value = decimal.MaxValue } }
                 }
@@ -91,7 +91,7 @@ namespace GoldKeeperTest
                     CompanyId = int.MinValue,
                     Date = DateTime.MinValue,
                     Discount = int.MinValue,
-                    ExtraCosts = new List<ExtraCostModel>() { new ExtraCostModel { Cost = string.Empty, Value = decimal.MinValue } },
+                    ExtraCosts = new List<ExtraCostModel>() { new ExtraCostModel { Cost = "Dummy Cost", Value = decimal.MinValue } },
                     Items = new List<ItemModel>() { new ItemModel { ProductId = int.MinValue, Quantity = int.MinValue, Value = decimal.MinValue } },
                     Payments = new List<PaymentModel> { new PaymentModel { MethodId = int.MinValue, Value = decimal.MinValue } }
                 }
