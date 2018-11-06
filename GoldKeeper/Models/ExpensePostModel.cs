@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GoldKeeper.Models
 {
-    public class PostExpenseModel
+    public class ExpensePostModel
     {
         [JsonRequired]
         public int CompanyId { get; set; }

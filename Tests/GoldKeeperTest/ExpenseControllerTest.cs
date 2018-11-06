@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
-using static GoldKeeper.Models.PostExpenseModel;
+using static GoldKeeper.Models.ExpensePostModel;
 
 namespace GoldKeeperTest
 {
@@ -16,7 +16,7 @@ namespace GoldKeeperTest
     {
         [Theory]
         [MemberData(nameof(GetPostExpenseSample))]
-        public async Task Should_ReturnSuccessResult_When_ModelStateIsValid(PostExpenseModel postedData)
+        public async Task Should_ReturnSuccessResult_When_ModelStateIsValid(ExpensePostModel postedData)
         {
             ExpenseController controller = new ExpenseController(context);
 
@@ -50,7 +50,7 @@ namespace GoldKeeperTest
         {
             yield return new object[]
             {
-                new PostExpenseModel
+                new ExpensePostModel
                 {
                     CompanyId = 1,
                     Date = default(DateTime),
@@ -62,7 +62,7 @@ namespace GoldKeeperTest
             };
             yield return new object[]
             {
-                new PostExpenseModel
+                new ExpensePostModel
                 {
                     CompanyId = -1,
                     Date = DateTime.Now,
@@ -74,7 +74,7 @@ namespace GoldKeeperTest
             };
             yield return new object[]
             {
-                new PostExpenseModel
+                new ExpensePostModel
                 {
                     CompanyId = int.MaxValue,
                     Date = DateTime.MaxValue,
@@ -86,7 +86,7 @@ namespace GoldKeeperTest
             };
             yield return new object[]
             {
-                new PostExpenseModel
+                new ExpensePostModel
                 {
                     CompanyId = int.MinValue,
                     Date = DateTime.MinValue,

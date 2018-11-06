@@ -13,7 +13,7 @@ namespace GoldKeeperTest
     {
         [Theory]
         [MemberData(nameof(GetPostProductSample))]
-        public async Task Should_ReturnSuccessResult_When_ModelIsValid(PostProductModel postedData)
+        public async Task Should_ReturnSuccessResult_When_ModelIsValid(ProductPostModel postedData)
         {
             var controller = new ProductController(context);
 
@@ -27,7 +27,7 @@ namespace GoldKeeperTest
 
         public static IEnumerable<object[]> GetPostProductSample()
         {
-            yield return new object[] { new PostProductModel { Name = "Batarang" } };
+            yield return new object[] { new ProductPostModel { Name = "Batarang" } };
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace GoldKeeper.Models
 {
-    public class PostPaymentMethodModel
+    public class ProductPostModel
     {
         [Required(AllowEmptyStrings = false)]
         public string Name { get; set; }

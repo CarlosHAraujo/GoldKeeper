@@ -21,7 +21,7 @@ namespace GoldKeeper.Controllers
         [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<Company>> Post(PostCompanyModel model, CancellationToken cancellationToken)
+        public async Task<ActionResult<Company>> Post(CompanyPostModel model, CancellationToken cancellationToken)
         {
             var company = new Company(model.Name);
 

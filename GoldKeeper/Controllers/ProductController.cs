@@ -21,7 +21,7 @@ namespace GoldKeeper.Controllers
         [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<Product>> Post(PostProductModel model, CancellationToken cancellationToken)
+        public async Task<ActionResult<Product>> Post(ProductPostModel model, CancellationToken cancellationToken)
         {
             var product = new Product(model.Name);
 

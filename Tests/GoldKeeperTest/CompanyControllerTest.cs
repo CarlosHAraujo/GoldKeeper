@@ -13,7 +13,7 @@ namespace GoldKeeperTest
     {
         [Theory]
         [MemberData(nameof(GetPostCompanySample))]
-        public async Task Should_ReturnSuccessResult_When_ModelStateIsValid(PostCompanyModel postedData)
+        public async Task Should_ReturnSuccessResult_When_ModelStateIsValid(CompanyPostModel postedData)
         {
             var controller = new CompanyController(context);
 
@@ -29,7 +29,7 @@ namespace GoldKeeperTest
         {
             yield return new object[]
             {
-                new PostCompanyModel{ Name = "Bruce Wayne" }
+                new CompanyPostModel{ Name = "Bruce Wayne" }
             };
         }
     }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GoldKeeper.Models
 {
-    public class PostCompanyModel
+    public class CompanyPostModel
     {
         [Required(AllowEmptyStrings = false)]
         public string Name { get; set; }

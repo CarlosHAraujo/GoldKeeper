@@ -13,7 +13,7 @@ namespace GoldKeeperTest
     {
         [Theory]
         [MemberData(nameof(GetPostPaymentMethodSample))]
-        public async Task Should_ReturnSuccessResult_When_ModelIsValid(PostPaymentMethodModel postedData)
+        public async Task Should_ReturnSuccessResult_When_ModelIsValid(PaymentMethodPostModel postedData)
         {
             var controller = new PaymentMethodController(context);
 
@@ -27,7 +27,7 @@ namespace GoldKeeperTest
 
         public static IEnumerable<object[]> GetPostPaymentMethodSample()
         {
-            yield return new object[] { new PostPaymentMethodModel { Name = "Dinheiro" } };
+            yield return new object[] { new PaymentMethodPostModel { Name = "Dinheiro" } };
         }
     }
 }
