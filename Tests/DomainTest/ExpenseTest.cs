@@ -66,17 +66,17 @@ namespace DomainTest
         public static IEnumerable<object[]> GetItemSample()
         {
             var random = new Random();
-            return new DecimalSample().Select(x => new object[]{ 1, x, random.Next() });
+            return new DecimalSample().SelectMany(x => x.Select(y => new object []{ 1, y, random.Next() }));
         }
 
         public static IEnumerable<object[]> GetExtraCostSample()
         {
-            return new DecimalSample().Select(x => (new object[] { "Dummy Cost", x }));
+            return new DecimalSample().SelectMany(x => x.Select(y => new object[] { "Dummy Cost", y }));
         }
 
         public static IEnumerable<object[]> GetPaymentSample()
         {
-            return new DecimalSample().Select(x => new object[] { 1, x });
+            return new DecimalSample().SelectMany(x => x.Select(y => new object[] { 1, y }));
         }
     }
 }
