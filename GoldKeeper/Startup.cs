@@ -1,5 +1,7 @@
+using Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,13 +20,18 @@ namespace GoldKeeper
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore().AddJsonFormatters().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
+            services.AddMvcCore()
+                    .AddJsonFormatters()
+                    .AddDataAnnotations()
+                    .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddDbContext<DomainContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,7 +46,8 @@ namespace GoldKeeper
 
             app.UseMvc();
 
-            app.UseSpa(spa => {
+            app.UseSpa(spa =>
+            {
                 spa.Options.SourcePath = "ClientApp";
             });
         }

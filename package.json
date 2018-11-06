@@ -1,75 +1,76 @@
 {
-    "name": "goldkeeper",
-    "version": "0.1.0-beta-g07fd1f74a8",
-    "description": "Finance and Savings app",
-    "main": "index.js",
-    "contributors": [
-        "Carlos Araujo <carlinhosmillenium@yahoo.com.br>"
-    ],
-    "scripts": {
-        "start:back": "npm run start:back:dev",
-        "start:back:dev": "dotnet run -p GoldKeeper -c Debug",
-        "start:back:stage": "dotnet run -p GoldKeeper --environment 'Staging' -c Debug",
-        "start:back:prod": "dotnet run -p GoldKeeper --environment 'Production' -c Debug",
-        "start:front": "npm run start:front:dev",
-        "start:front:dev": "pushd ./GoldKeeper/ClientApp/ && npm run start:dev",
-        "start:front:stage": "pushd ./GoldKeeper/ClientApp/ && npm run start:stage",
-        "start:front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run start:prod",
-        "start": "npm run start:dev",
-        "start:dev": "npm run start:back:dev & npm run start:front:dev",
-        "start:stage": "npm run start:back:stage & npm run start:front:stage",
-        "start:prod": "npm run start:back:prod & npm run start:front:prod",
-        "build:back": "npm run build:back:dev",
-        "build:back:dev": "dotnet build --no-incremental -warnaserror",
-        "build:back:stage": "dotnet build --environment 'Staging' -c Release --no-incremental -warnaserror",
-        "build:back:prod": "dotnet build --environment 'Production' -c Release --no-incremental -warnaserror",
-        "build:front": "npm run build:front:dev",
-        "build:front:dev": "pushd ./GoldKeeper/ClientApp/ && npm run build",
-        "build:front:stage": "pushd ./GoldKeeper/ClientApp/ && npm run build:stage",
-        "build:front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run build:prod",
-        "build": "npm run build:dev",
-        "build:dev": "npm run build:back:dev && npm run build:front:dev",
-        "build:stage": "npm run build:back:stage && npm run build:front:stage",
-        "build:prod": "npm run build:back:prod && npm run build:front:prod",
-        "test:back": "npm run test:back:dev",
-        "test:back:dev": "dotnet test",
-        "test:back:stage": "dotnet test --environment 'Staging' -c Release",
-        "test:back:prod": "dotnet test --environment 'Production' -c Release",
-        "test:front": "npm run test:front:dev",
-        "test:front:dev": "pushd ./GoldKeeper/ClientApp/ && npm run test",
-        "test:front:stage": "pushd ./GoldKeeper/ClientApp/ && npm run test:stage",
-        "test:front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run test:prod",
-        "test": "npm run test:dev",
-        "test:dev": "npm run test:back:dev && npm run test:front:dev",
-        "test:stage": "npm run test:back:stage && npm run test:front:stage",
-        "test:prod": "npm run test:back:prod && npm run test:front:prod",
-        "lint:front": "npm run lint:front:dev",
-        "lint:front:dev": "pushd ./GoldKeeper/ClientApp/ && npm run lint",
-        "lint:front:stage": "pushd ./GoldKeeper/ClientApp/ && npm run lint:stage",
-        "lint:front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run lint:prod",
-        "set-version": "node ./shell/set-version.js"
-    },
-    "husky": {
-        "hooks": {
-            "post-checkout": "node ./shell/postcheckout.js",
-            "commit-msg": "bash ./shell/commitmsg.sh",
-            "pre-push": "bash ./shell/prepush.sh"
-        }
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/CarlosHAraujo/GoldKeeper.git"
-    },
-    "author": "Carlos Araujo",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/CarlosHAraujo/GoldKeeper/issues"
-    },
-    "homepage": "https://github.com/CarlosHAraujo/GoldKeeper#readme",
-    "devDependencies": {
-        "husky": "^1.1.2",
-        "nerdbank-gitversioning": "^2.2.7",
-        "request": "^2.88.0",
-        "shelljs": "^0.8.2"
+  "name": "goldkeeper",
+  "version": "0.1.0-beta-ga023934027",
+  "description": "Finance and Savings app",
+  "main": "index.js",
+  "contributors": [
+    "Carlos Araujo <carlinhosmillenium@yahoo.com.br>"
+  ],
+  "scripts": {
+    "start:back": "npm run start:back:dev",
+    "start:back:dev": "dotnet run -p GoldKeeper -c Debug",
+    "start:back:stage": "dotnet run -p GoldKeeper --environment 'Staging' -c Debug",
+    "start:back:prod": "dotnet run -p GoldKeeper --environment 'Production' -c Debug",
+    "start:front": "npm run start:front:dev",
+    "start:front:dev": "pushd ./GoldKeeper/ClientApp/ && npm run start:dev",
+    "start:front:stage": "pushd ./GoldKeeper/ClientApp/ && npm run start:stage",
+    "start:front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run start:prod",
+    "start": "npm run start:dev",
+    "start:dev": "npm run start:back:dev & npm run start:front:dev",
+    "start:stage": "npm run start:back:stage & npm run start:front:stage",
+    "start:prod": "npm run start:back:prod & npm run start:front:prod",
+    "build:back": "npm run build:back:dev",
+    "build:back:dev": "dotnet build --no-incremental -warnaserror",
+    "build:back:stage": "dotnet build -c Release --no-incremental -warnaserror",
+    "build:back:prod": "dotnet build -c Release --no-incremental -warnaserror",
+    "build:front": "npm run build:front:dev",
+    "build:front:dev": "pushd ./GoldKeeper/ClientApp/ && npm run build",
+    "build:front:stage": "pushd ./GoldKeeper/ClientApp/ && npm run build:stage",
+    "build:front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run build:prod",
+    "build": "npm run build:dev",
+    "build:dev": "npm run build:back:dev && npm run build:front:dev",
+    "build:stage": "npm run build:back:stage && npm run build:front:stage",
+    "build:prod": "npm run build:back:prod && npm run build:front:prod",
+    "test:back": "npm run test:back:dev",
+    "test:back:dev": "dotnet test",
+    "test:back:stage": "dotnet test --environment 'Staging' -c Release",
+    "test:back:prod": "dotnet test --environment 'Production' -c Release",
+    "test:front": "npm run test:front:dev",
+    "test:front:dev": "pushd ./GoldKeeper/ClientApp/ && npm run test",
+    "test:front:stage": "pushd ./GoldKeeper/ClientApp/ && npm run test:stage",
+    "test:front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run test:prod",
+    "test": "npm run test:dev",
+    "test:dev": "npm run test:back:dev && npm run test:front:dev",
+    "test:stage": "npm run test:back:stage && npm run test:front:stage",
+    "test:prod": "npm run test:back:prod && npm run test:front:prod",
+    "lint:front": "npm run lint:front:dev",
+    "lint:front:dev": "pushd ./GoldKeeper/ClientApp/ && npm run lint",
+    "lint:front:stage": "pushd ./GoldKeeper/ClientApp/ && npm run lint:stage",
+    "lint:front:prod": "pushd ./GoldKeeper/ClientApp/ && npm run lint:prod",
+    "set-version": "node ./shell/set-version.js"
+  },
+  "husky": {
+    "hooks": {
+      "post-checkout": "node ./shell/postcheckout.js",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS ",
+      "pre-push": "bash ./shell/prepush.sh",
+      "post-commit": "bash ./shell/postcommit.sh"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarlosHAraujo/GoldKeeper.git"
+  },
+  "author": "Carlos Araujo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CarlosHAraujo/GoldKeeper/issues"
+  },
+  "homepage": "https://github.com/CarlosHAraujo/GoldKeeper#readme",
+  "devDependencies": {
+    "husky": "^1.1.2",
+    "nerdbank-gitversioning": "^2.2.7",
+    "request": "^2.88.0",
+    "shelljs": "^0.8.2"
+  }
 }
