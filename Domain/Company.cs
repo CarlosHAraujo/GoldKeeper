@@ -1,9 +1,11 @@
-﻿using Shared.Extensions;
+﻿using System.Collections.Generic;
+using Shared.Extensions;
 
 namespace Domain
 {
     public class Company
     {
+        private readonly List<Expense> _expenses = new List<Expense>();
         private Company()
         {
         }
@@ -15,5 +17,6 @@ namespace Domain
 
         public int Id { get; private set; }
         public string Name { get; private set; }
+        public IReadOnlyList<Expense> Expenses { get { return _expenses.AsReadOnly(); } }
     }
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DomainContext))]
-    [Migration("20181105220125_AddNamePaymentMethod")]
-    partial class AddNamePaymentMethod
+    [Migration("20181106175055_AddExpense")]
+    partial class AddExpense
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,7 +27,10 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name");
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -46,6 +49,8 @@ namespace Data.Migrations
 
                     b.Property<decimal>("Discount");
 
+                    b.Property<bool>("IsDeleted");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
@@ -59,9 +64,12 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Cost");
+                    b.Property<string>("Cost")
+                        .IsRequired();
 
                     b.Property<int?>("ExpenseId");
+
+                    b.Property<bool>("IsDeleted");
 
                     b.Property<decimal>("Value");
 
@@ -79,6 +87,8 @@ namespace Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("ExpenseId");
+
+                    b.Property<bool>("IsDeleted");
 
                     b.Property<int>("ProductId");
 
@@ -103,6 +113,8 @@ namespace Data.Migrations
 
                     b.Property<int?>("ExpenseId");
 
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<int>("MethodId");
 
                     b.Property<decimal>("Value");
@@ -122,7 +134,10 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name");
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -135,7 +150,10 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name");
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -145,7 +163,7 @@ namespace Data.Migrations
             modelBuilder.Entity("Domain.Expense", b =>
                 {
                     b.HasOne("Domain.Company", "Company")
-                        .WithMany()
+                        .WithMany("Expenses")
                         .HasForeignKey("CompanyId");
                 });
 
