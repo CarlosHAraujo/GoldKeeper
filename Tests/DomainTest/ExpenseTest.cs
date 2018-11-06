@@ -9,7 +9,7 @@ namespace DomainTest
     public class ExpenseTest
     {
         [Theory]
-        [MemberData(nameof(GetDiscountSample))]
+        [ClassData(typeof(DecimalSample))]
         public void Should_DiscontBePositive_When_AnyValueIsPassed(decimal discount)
         {
             var expense = GetGoodExpense(discount);
@@ -63,25 +63,20 @@ namespace DomainTest
             return new Expense(1, default(DateTime), discount);
         }
 
-        public static IEnumerable<object[]> GetDiscountSample()
-        {
-            return Common.GetDecimalSample().Select(x => new object[] { x });
-        }
-
         public static IEnumerable<object[]> GetItemSample()
         {
             var random = new Random();
-            return Common.GetDecimalSample().Select(x => new object[]{ 1, x, random.Next() });
+            return new DecimalSample().Select(x => new object[]{ 1, x, random.Next() });
         }
 
         public static IEnumerable<object[]> GetExtraCostSample()
         {
-            return Common.GetDecimalSample().ToList().Select(x => (new object[] { "Dummy Cost", x }));
+            return new DecimalSample().Select(x => (new object[] { "Dummy Cost", x }));
         }
 
         public static IEnumerable<object[]> GetPaymentSample()
         {
-            return Common.GetDecimalSample().Select(x => new object[] { 1, x });
+            return new DecimalSample().Select(x => new object[] { 1, x });
         }
     }
 }
