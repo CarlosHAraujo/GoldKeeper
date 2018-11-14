@@ -14,7 +14,7 @@ namespace Domain
         {
         }
 
-        public Expense(int companyId, DateTime date, decimal discount = 0)
+        public Expense(int companyId, DateTimeOffset date, decimal discount = 0)
         {
             CompanyId = companyId;
             Date = date;
@@ -22,7 +22,7 @@ namespace Domain
         }
 
         public int Id { get; private set; }
-        public DateTime Date { get; private set; }
+        public DateTimeOffset Date { get; private set; }
         public decimal Discount { get; private set; }
         public decimal GrandTotal { get { return _items.Sum(x => x.Total) + _extraCosts.Sum(x => x.Value) - Discount; } }
         public int? CompanyId { get; private set; }

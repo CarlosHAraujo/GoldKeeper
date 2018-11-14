@@ -36,6 +36,11 @@ namespace GoldKeeper
             });
 
             services.AddDbContext<DomainContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
+
+            if (Environment.IsDevelopment())
+            {
+                services.AddCors();
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +48,7 @@ namespace GoldKeeper
         {
             if (Environment.IsDevelopment())
             {
+                app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
                 app.UseDeveloperExceptionPage();
             }
 

@@ -11,10 +11,9 @@ namespace GoldKeeper.Models
         public int CompanyId { get; set; }
 
         [JsonRequired]
-        public DateTime Date { get; set; }
+        public DateTimeOffset Date { get; set; }
 
-        [JsonRequired]
-        public decimal Discount { get; set; }
+        public decimal? Discount { get; set; }
 
         public IEnumerable<ExtraCostModel> ExtraCosts { get; set; }
 

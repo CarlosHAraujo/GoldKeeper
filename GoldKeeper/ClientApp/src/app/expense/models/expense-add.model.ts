@@ -1,6 +1,6 @@
 export class ExpensePostModel {
   companyId = 0;
-  date: Date = new Date();
+  date: string;
   discount = 0;
   extraCosts: Array<ExtraCostModel> = [];
   payments: Array<PaymentModel> = [];

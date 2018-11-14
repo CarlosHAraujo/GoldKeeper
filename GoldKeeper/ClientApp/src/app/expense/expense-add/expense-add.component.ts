@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { ExpenseService } from '../services/expense.service';
+import * as moment from 'moment';
+import { ExpensePostModel } from '../models/expense-add.model';
 
 @Component({
   selector: 'app-expense-add',
@@ -122,9 +124,10 @@ export class ExpenseAddComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.dir(this.form.valid);
     if (this.form.valid) {
-      this.service.post(this.form.value).subscribe(result => console.dir(result));
+      const postData = this.form.value as ExpensePostModel;
+      postData.date = moment(this.date.value).format();
+      this.service.post(postData).subscribe(result => console.dir(result));
     }
   }
 }

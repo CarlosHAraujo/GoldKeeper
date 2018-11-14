@@ -30,7 +30,7 @@ namespace GoldKeeper.Controllers
                 return BadRequest();
             }
 
-            var expense = new Expense(model.CompanyId, model.Date, model.Discount);
+            var expense = new Expense(model.CompanyId, model.Date, model.Discount ?? 0);
 
             Array.ForEach(model.Payments.ToArray(), p => expense.AddPayment(p.MethodId, p.Value));
 
