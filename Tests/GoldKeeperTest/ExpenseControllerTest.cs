@@ -27,7 +27,7 @@ namespace GoldKeeperTest
             var expense = Assert.IsType<Expense>(okResult.Value);
             Assert.Equal(postedData.CompanyId, expense.CompanyId);
             Assert.Equal(postedData.Date, expense.Date);
-            Assert.Equal(Math.Abs(postedData.Discount), expense.Discount);
+            Assert.Equal(Math.Abs(postedData.Discount ?? 0), expense.Discount);
 
             ExtraCostModel postedExtraCost = postedData.ExtraCosts.First();
             ExtraCost savedExtraCost = expense.ExtraCosts.First();
@@ -53,7 +53,7 @@ namespace GoldKeeperTest
                 new ExpensePostModel
                 {
                     CompanyId = 1,
-                    Date = default(DateTime),
+                    Date = default(DateTimeOffset),
                     Discount = 0,
                     ExtraCosts = new List<ExtraCostModel>() { new ExtraCostModel { Cost = "Dummy Cost", Value = 0 } },
                     Items = new List<ItemModel>() { new ItemModel { ProductId = 1, Quantity = 1, Value = 0 } },
@@ -65,7 +65,7 @@ namespace GoldKeeperTest
                 new ExpensePostModel
                 {
                     CompanyId = -1,
-                    Date = DateTime.Now,
+                    Date = DateTimeOffset.Now,
                     Discount = -1,
                     ExtraCosts = new List<ExtraCostModel>() { new ExtraCostModel { Cost = "Dummy Cost", Value = -1 } },
                     Items = new List<ItemModel>() { new ItemModel { ProductId = -1, Quantity = -1, Value = -1 } },
@@ -77,7 +77,7 @@ namespace GoldKeeperTest
                 new ExpensePostModel
                 {
                     CompanyId = int.MaxValue,
-                    Date = DateTime.MaxValue,
+                    Date = DateTimeOffset.MaxValue,
                     Discount = int.MaxValue,
                     ExtraCosts = new List<ExtraCostModel>() { new ExtraCostModel { Cost = "Dummy Cost", Value = decimal.MaxValue } },
                     Items = new List<ItemModel>() { new ItemModel { ProductId = int.MaxValue, Quantity = int.MaxValue, Value = decimal.MaxValue } },
@@ -89,7 +89,7 @@ namespace GoldKeeperTest
                 new ExpensePostModel
                 {
                     CompanyId = int.MinValue,
-                    Date = DateTime.MinValue,
+                    Date = DateTimeOffset.MinValue,
                     Discount = int.MinValue,
                     ExtraCosts = new List<ExtraCostModel>() { new ExtraCostModel { Cost = "Dummy Cost", Value = decimal.MinValue } },
                     Items = new List<ItemModel>() { new ItemModel { ProductId = int.MinValue, Quantity = int.MinValue, Value = decimal.MinValue } },
