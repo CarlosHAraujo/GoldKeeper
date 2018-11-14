@@ -1,0 +1,8 @@
+<div class="input-group input-group-lg" [formGroup]="form">
+  <input type="text" class="form-control" placeholder="cost" formControlName="cost" [class.is-invalid]="(cost.invalid && submitted.value) || invalid">
+  <input type="number" class="form-control" placeholder="value" formControlName="value" [class.is-invalid]="(value.invalid && submitted.value) || invalid">
+  <div class="input-group-append text-monospace">
+    <button *ngIf="addMode" class="btn btn-outline-primary " type="button" (click)="onAdded()">+</button>
+    <button *ngIf="!addMode" class="btn btn-outline-danger" type="button" (click)="onDeleted()">-</button>
+  </div>
+</div>

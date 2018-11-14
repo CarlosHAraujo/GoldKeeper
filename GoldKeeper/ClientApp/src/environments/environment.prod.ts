@@ -5,7 +5,8 @@
 export const environment = {
   production: true,
   name: 'production',
-  version: require('../../../../package.json').version
+  version: require('../../../../package.json').version,
+  api: ''
 };
 
 /*

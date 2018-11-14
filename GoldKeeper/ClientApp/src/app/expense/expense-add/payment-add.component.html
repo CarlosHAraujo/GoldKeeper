@@ -1,0 +1,11 @@
+<div class="input-group input-group-lg" [formGroup]="form">
+  <select class="form-control" formControlName="methodId" [class.is-invalid]="(methodId.invalid && submitted.value) || invalid">
+    <option [ngValue]="null">Payment Method</option>
+    <option *ngFor="let method of paymentMethods" [value]="method.id">{{method.name}}</option>
+  </select>
+  <input type="number" class="form-control" placeholder="value" formControlName="value" [class.is-invalid]="(value.invalid && submitted.value) || invalid">
+  <div class="input-group-append text-monospace">
+    <button *ngIf="addMode" class="btn btn-outline-primary" type="button" (click)="onAdded()">+</button>
+    <button *ngIf="!addMode" class="btn btn-outline-danger" type="button" (click)="onDeleted()">-</button>
+  </div>
+</div>

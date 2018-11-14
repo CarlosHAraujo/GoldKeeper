@@ -1,6 +1,7 @@
 using Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,8 +12,11 @@ namespace GoldKeeper
     {
         public IConfiguration Configuration { get; }
 
-        public Startup(IConfiguration configuration)
+        public IHostingEnvironment Environment { get; }
+
+        public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
+            Environment = environment;
             Configuration = configuration;
         }
 
@@ -35,9 +39,9 @@ namespace GoldKeeper
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
+            if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -49,6 +53,10 @@ namespace GoldKeeper
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
+                if (Environment.IsDevelopment() && Configuration.GetValue<bool>("LaunchAngular"))
+                {
+                    spa.UseAngularCliServer(npmScript: "start:dev");
+                }
             });
         }
     }
