@@ -23,10 +23,10 @@ namespace GoldKeeper.Controllers
 
         [HttpGet]
         [ProducesResponseType(200)]
-        public async Task<ActionResult<IEnumerable<(int id, string name)>>> Get(CancellationToken cancellationToken)
+        public async Task<ActionResult<IEnumerable<CompanyGetModel>>> Get(CancellationToken cancellationToken)
         {
-            var companies = await _context.Companies.ToListAsync(cancellationToken);
-            return Ok(companies.Select(x => (id: x.Id, name: x.Name)));            
+            var companies = await _context.Companies.Select(x => new CompanyGetModel { Id = x.Id, Name = x.Name }).ToListAsync(cancellationToken);
+            return Ok(companies);
         }
 
         [HttpPost]

@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { PaymentMethodSelectModel } from '../models/payment-method-select.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-payment-add',
@@ -11,7 +13,7 @@ export class PaymentAddComponent {
   public form: FormGroup;
 
   @Input()
-  public paymentMethods: Array<any>;
+  public paymentMethods: Observable<Array<PaymentMethodSelectModel>>;
 
   @Input()
   invalid: boolean;

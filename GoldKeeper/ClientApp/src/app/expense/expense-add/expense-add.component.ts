@@ -4,6 +4,9 @@ import { ExpenseService } from '../services/expense.service';
 import * as moment from 'moment';
 import { ExpensePostModel } from '../models/expense-add.model';
 import { Observable } from 'rxjs';
+import { PaymentMethodSelectModel } from '../models/payment-method-select.model';
+import { ProductSelectModel } from '../models/product-select.model';
+import { CompanySelectModel } from '../models/company-select.model';
 
 @Component({
   selector: 'app-expense-add',
@@ -16,9 +19,9 @@ export class ExpenseAddComponent implements OnInit {
   public extraCostForm: FormGroup;
   public paymentForm: FormGroup;
   public itemForm: FormGroup;
-  public companies: Array<any>;
-  public paymentMethods: Array<any>;
-  public products: Observable<Array<any>>;
+  public companies: Observable<Array<CompanySelectModel>>;
+  public paymentMethods: Observable<Array<PaymentMethodSelectModel>>;
+  public products: Observable<Array<ProductSelectModel>>;
 
   constructor(private fb: FormBuilder, private service: ExpenseService) {
   }
@@ -53,6 +56,8 @@ export class ExpenseAddComponent implements OnInit {
     });
 
     this.products = this.service.getProducts();
+    this.paymentMethods = this.service.getPaymentMethods();
+    this.companies = this.service.getCompanies();
   }
 
   get companyId(): FormGroup {

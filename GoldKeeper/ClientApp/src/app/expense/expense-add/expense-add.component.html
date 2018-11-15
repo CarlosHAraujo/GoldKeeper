@@ -3,7 +3,7 @@
     <label for="companyId">Company</label>
     <select class="form-control" formControlName="companyId" [class.is-invalid]="companyId.invalid && (companyId.dirty || companyId.touched || formDir.submitted)">
       <option [ngValue]="null">Company</option>
-      <option *ngFor="let company of companies" [value]="company.id">{{company.name}}</option>
+      <option *ngFor="let company of companies | async" [value]="company.id">{{company.name}}</option>
     </select>
     <div class="invalid-feedback">Company is Required.</div>
   </div>
