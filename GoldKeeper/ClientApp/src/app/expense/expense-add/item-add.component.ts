@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ProductSelectModel } from '../models/product-select.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-item-add',
@@ -17,7 +19,7 @@ export class ItemAddComponent {
   public addMode: boolean;
 
   @Input()
-  public products: Array<any>;
+  public products: Observable<Array<ProductSelectModel>>;
 
   @Output()
   public added = new EventEmitter();

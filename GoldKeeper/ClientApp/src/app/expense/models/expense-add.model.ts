@@ -1,24 +1,24 @@
 export class ExpensePostModel {
-  companyId = 0;
+  companyId: number;
   date: string;
-  discount = 0;
-  extraCosts: Array<ExtraCostModel> = [];
-  payments: Array<PaymentModel> = [];
-  items: Array<ItemModel> = [];
+  discount: number;
+  extraCosts: Array<ExtraCostModel>;
+  payments: Array<PaymentModel>;
+  items: Array<ItemModel>;
 }
 
 class ExtraCostModel {
-  cost = '';
-  value = 0;
+  cost: string;
+  value: number;
 }
 
 class PaymentModel {
-  methodId = 0;
-  value = 0;
+  methodId: number;
+  value: number;
 }
 
 class ItemModel {
-  productId = 0;
-  quantity = 0;
-  value = 0;
+  productId: number;
+  quantity: number;
+  value: number;
 }

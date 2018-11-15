@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@ang
 import { ExpenseService } from '../services/expense.service';
 import * as moment from 'moment';
 import { ExpensePostModel } from '../models/expense-add.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-expense-add',
@@ -17,7 +18,7 @@ export class ExpenseAddComponent implements OnInit {
   public itemForm: FormGroup;
   public companies: Array<any>;
   public paymentMethods: Array<any>;
-  public products: Array<any>;
+  public products: Observable<Array<any>>;
 
   constructor(private fb: FormBuilder, private service: ExpenseService) {
   }
@@ -51,20 +52,7 @@ export class ExpenseAddComponent implements OnInit {
       submitted: false
     });
 
-    this.companies = [{
-      id: 1,
-      name: 'Test'
-    }];
-
-    this.paymentMethods = [{
-      id: 1,
-      name: 'Dinheiro'
-    }];
-
-    this.products = [{
-      id: 1,
-      name: 'Pizza'
-    }];
+    this.products = this.service.getProducts();
   }
 
   get companyId(): FormGroup {

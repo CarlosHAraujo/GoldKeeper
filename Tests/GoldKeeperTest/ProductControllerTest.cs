@@ -22,12 +22,12 @@ namespace GoldKeeperTest
 
             var result = await controller.Get(default(CancellationToken));
 
-            var actionResult = Assert.IsType<ActionResult<IEnumerable<(int, string)>>>(result);
+            var actionResult = Assert.IsType<ActionResult<IEnumerable<ProductGetModel>>>(result);
             var okResult = Assert.IsType<OkObjectResult>(actionResult.Result);
-            var tuple = Assert.IsAssignableFrom<IEnumerable<(int id, string name)>>(okResult.Value);
+            var tuple = Assert.IsAssignableFrom<IEnumerable<ProductGetModel>>(okResult.Value);
             Assert.NotEmpty(tuple);
-            Assert.Equal(productTest.Id, tuple.First().id);
-            Assert.Equal(productTest.Name, tuple.First().name);
+            Assert.Equal(productTest.Id, tuple.First().Id);
+            Assert.Equal(productTest.Name, tuple.First().Name);
         }
 
         [Theory]
