@@ -2,6 +2,9 @@
 using Domain;
 using GoldKeeper.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,6 +19,14 @@ namespace GoldKeeper.Controllers
         public PaymentMethodController(DomainContext context)
         {
             _context = context;
+        }
+
+        [HttpGet]
+        [ProducesResponseType(200)]
+        public async Task<ActionResult<IEnumerable<(int id, string name)>>> Get(CancellationToken cancellationToken)
+        {
+            var paymentMethods = await _context.PaymentMethods.ToListAsync(cancellationToken);
+            return Ok(paymentMethods.Select(x => (x.Id, x.Name)));
         }
 
         [HttpPost]
