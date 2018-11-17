@@ -1,14 +1,18 @@
 import { Component, OnInit, Input, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { ProductSelectModel } from '../models/product-select.model';
 import { Observable } from 'rxjs';
+import { first, filter, take, debounceTime } from 'rxjs/operators';
+import { RequiredIf } from 'src/app/requiredif.validator';
 
 @Component({
   selector: 'app-item-add',
   templateUrl: './item-add.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ItemAddComponent {
+export class ItemAddComponent implements OnInit {
+  public newProduct: boolean;
+
   @Input()
   public form: FormGroup;
 
@@ -19,7 +23,7 @@ export class ItemAddComponent {
   public addMode: boolean;
 
   @Input()
-  public products: Observable<Array<ProductSelectModel>>;
+  public products$: Observable<ProductSelectModel[]>;
 
   @Output()
   public added = new EventEmitter();
@@ -30,12 +34,22 @@ export class ItemAddComponent {
   constructor() {
   }
 
+  ngOnInit(): void {
+    this.productId.setValidators([RequiredIf(() => !this.newProduct && !this.productName.value, this.productName)]);
+    this.productName.setValidators([RequiredIf(() => this.newProduct && !this.productId.value, this.productId)]);
+    this.newProduct = !!this.productName.value;
+  }
+
   onAdded(): void {
     this.added.emit(null);
   }
 
   ondeleted(): void {
     this.deleted.emit(null);
+  }
+
+  get productName(): FormControl {
+    return this.form.get('productName') as FormControl;
   }
 
   get productId(): FormControl {
@@ -52,5 +66,14 @@ export class ItemAddComponent {
 
   get submitted(): FormControl {
     return this.form.get('submitted') as FormControl;
+  }
+
+  onNewProductClicked(): void {
+    this.newProduct = !this.newProduct;
+    if (this.newProduct) {
+      this.productId.reset(null, { onlySelf: true, emitEvent: false });
+    } else {
+      this.productName.reset(null, { onlySelf: true, emitEvent: false });
+    }
   }
 }

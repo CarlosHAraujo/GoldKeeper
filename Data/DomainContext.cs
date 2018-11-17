@@ -22,9 +22,7 @@ namespace Data
 
             modelBuilder.Entity<Expense>().Property(x => x.Date).IsRequired();
             modelBuilder.Entity<Expense>().Property(x => x.Discount);
-            modelBuilder.Entity<Expense>().HasMany(x => x.ExtraCosts);
-            modelBuilder.Entity<Expense>().HasMany(x => x.Payments);
-            modelBuilder.Entity<Expense>().HasOne(x => x.Company).WithMany(x => x.Expenses);
+            modelBuilder.Entity<Expense>().HasOne(x => x.Company);
             modelBuilder.Entity<Expense>().HasSoftDelete();
 
             modelBuilder.Entity<ExtraCost>().Property(x => x.Cost).IsRequired();

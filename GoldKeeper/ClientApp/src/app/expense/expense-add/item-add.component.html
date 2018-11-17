@@ -1,8 +1,22 @@
 <div class="input-group input-group-lg" [formGroup]="form">
-  <select class="form-control" formControlName="productId" [class.is-invalid]="(productId.invalid && submitted.value) || invalid">
+  <input
+    *ngIf="newProduct"
+    type="text"
+    class="form-control"
+    formControlName="productName"
+    [class.is-invalid]="(productName.invalid && submitted.value) || invalid">
+  <select
+    *ngIf="!newProduct"
+    class="form-control"
+    formControlName="productId"
+    [class.is-invalid]="(productId.invalid && submitted.value) || invalid">
     <option [ngValue]="null">Product</option>
-    <option *ngFor="let product of products | async" [value]="product.id">{{product.name}}</option>
+    <option *ngFor="let product of products$ | async" [value]="product.id">{{product.name}}</option>
   </select>
+  <div class="input-group-append text-monospace">
+    <button *ngIf="!newProduct" class="btn btn-outline-primary" type="button" (click)="onNewProductClicked()">+</button>
+    <button *ngIf="newProduct" class="btn btn-outline-primary" type="button" (click)="onNewProductClicked()">-</button>
+  </div>
   <input type="number" class="form-control" placeholder="quantity" formControlName="quantity" [class.is-invalid]="(quantity.invalid && submitted.value) || invalid">
   <input type="number" class="form-control" placeholder="value" formControlName="value" [class.is-invalid]="(value.invalid && submitted.value) || invalid">
   <div class="input-group-append text-monospace">

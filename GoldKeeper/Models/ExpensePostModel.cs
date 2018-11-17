@@ -7,8 +7,11 @@ namespace GoldKeeper.Models
 {
     public class ExpensePostModel
     {
-        [JsonRequired]
-        public int CompanyId { get; set; }
+        [RequiredIf(nameof(CompanyId), AllowEmptyStrings = false)]
+        public string CompanyName { get; set; }
+
+        [RequiredIf(nameof(CompanyName))]
+        public int? CompanyId { get; set; }
 
         [JsonRequired]
         public DateTimeOffset Date { get; set; }
@@ -23,8 +26,11 @@ namespace GoldKeeper.Models
 
         public class PaymentModel
         {
-            [JsonRequired]
-            public int MethodId { get; set; }
+            [RequiredIf(nameof(MethodId), AllowEmptyStrings = false)]
+            public string MethodName { get; set; }
+
+            [RequiredIf(nameof(MethodName))]
+            public int? MethodId { get; set; }
 
             [JsonRequired]
             public decimal Value { get; set; }
@@ -41,8 +47,11 @@ namespace GoldKeeper.Models
 
         public class ItemModel
         {
-            [JsonRequired]
-            public int ProductId { get; set; }
+            [RequiredIf(nameof(ProductId), AllowEmptyStrings = false)]
+            public string ProductName { get; set; }
+
+            [RequiredIf(nameof(ProductName))]
+            public int? ProductId { get; set; }
 
             [JsonRequired]
             public int Quantity { get; set; }

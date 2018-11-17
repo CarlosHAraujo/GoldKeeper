@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { PaymentMethodSelectModel } from '../models/payment-method-select.model';
 import { ProductSelectModel } from '../models/product-select.model';
 import { CompanySelectModel } from '../models/company-select.model';
+import { RequiredIf } from 'src/app/requiredif.validator';
 
 @Component({
   selector: 'app-expense-add',
@@ -19,22 +20,27 @@ export class ExpenseAddComponent implements OnInit {
   public extraCostForm: FormGroup;
   public paymentForm: FormGroup;
   public itemForm: FormGroup;
-  public companies: Observable<Array<CompanySelectModel>>;
-  public paymentMethods: Observable<Array<PaymentMethodSelectModel>>;
-  public products: Observable<Array<ProductSelectModel>>;
+  public companies$: Observable<CompanySelectModel[]>;
+  public paymentMethods$: Observable<PaymentMethodSelectModel[]>;
+  public products$: Observable<ProductSelectModel[]>;
+  public newCompany: boolean;
 
   constructor(private fb: FormBuilder, private service: ExpenseService) {
   }
 
   ngOnInit() {
     this.form = this.fb.group({
-      companyId: [null, Validators.required],
+      companyId: null,
+      companyName: null,
       date: [null, Validators.required],
       discount: null,
       extraCosts: this.fb.array([]),
-      payments: this.fb.array([], Validators.required),
+      payments: this.fb.array([], [Validators.required]),
       items: this.fb.array([], Validators.required)
     });
+
+    this.companyId.setValidators([RequiredIf(() => !this.newCompany && !this.companyName.value, this.companyName)]);
+    this.companyName.setValidators([RequiredIf(() => this.newCompany && !this.companyId.value, this.companyId)]);
 
     this.extraCostForm = this.fb.group({
       cost: [null, Validators.required],
@@ -43,21 +49,27 @@ export class ExpenseAddComponent implements OnInit {
     });
 
     this.paymentForm = this.fb.group({
-      methodId: [null, Validators.required],
+      methodId: null,
+      methodName: null,
       value: [null, Validators.required],
       submitted: false
     });
 
     this.itemForm = this.fb.group({
-      productId: [null, Validators.required],
+      productId: null,
+      productName: null,
       quantity: [null, Validators.required],
       value: [null, Validators.required],
       submitted: false
     });
 
-    this.products = this.service.getProducts();
-    this.paymentMethods = this.service.getPaymentMethods();
-    this.companies = this.service.getCompanies();
+    this.products$ = this.service.getProducts();
+    this.paymentMethods$ = this.service.getPaymentMethods();
+    this.companies$ = this.service.getCompanies();
+  }
+
+  get companyName(): FormGroup {
+    return this.form.get('companyName') as FormGroup;
   }
 
   get companyId(): FormGroup {
@@ -114,6 +126,15 @@ export class ExpenseAddComponent implements OnInit {
 
   deleteItem(i: number): void {
     this.items.removeAt(i);
+  }
+
+  onNewCompanyClicked(): void {
+    this.newCompany = !this.newCompany;
+    if (this.newCompany) {
+      this.companyId.reset(null, { onlySelf: true, emitEvent: false });
+    } else {
+      this.companyName.reset(null, { onlySelf: true, emitEvent: false });
+    }
   }
 
   onSubmit(): void {
