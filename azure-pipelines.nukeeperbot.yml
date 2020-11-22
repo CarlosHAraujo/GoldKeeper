@@ -13,6 +13,6 @@ steps:
 - script: dotnet tool install --tool-path . NuKeeper
   displayName: 'Install NuKeeper'
 
-- script: .\NuKeeper repo https://github.com/CarlosHAraujo/GoldKeeper $(goldkeeper.GithubToken) --consolidate
+- script: .\NuKeeper repo https://github.com/CarlosHAraujo/GoldKeeper $(goldkeeper.GithubToken) --consolidate --change minor
   displayName: Update nuget packages with NuKeeper
  
