@@ -4,9 +4,6 @@
 # Visual Studio Code profile
 .vscode/
 
-# Github templates
-.github/
-
 # User-specific files
 *.suo
 *.user
