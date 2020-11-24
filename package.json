@@ -69,7 +69,7 @@
   "homepage": "https://github.com/CarlosHAraujo/GoldKeeper#readme",
   "devDependencies": {
     "husky": "^4.3.0",
-    "nerdbank-gitversioning": "^2.2.7",
+    "nerdbank-gitversioning": "^3.3.37",
     "request": "^2.88.0",
     "shelljs": "^0.8.2"
   }
