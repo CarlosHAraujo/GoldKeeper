@@ -23,6 +23,11 @@ namespace GoldKeeper.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult<PaymentMethod>> Post(PaymentMethodPostModel model, CancellationToken cancellationToken)
         {
+            if (model is null)
+            {
+                return BadRequest();
+            }
+
             var method = new PaymentMethod(model.Name);
 
             var entity = await _context.PaymentMethods.AddAsync(method, cancellationToken);

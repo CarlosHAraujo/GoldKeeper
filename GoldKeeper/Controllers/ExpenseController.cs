@@ -25,6 +25,11 @@ namespace GoldKeeper.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult<Expense>> Post(ExpensePostModel model, CancellationToken cancellationToken)
         {
+            if (model is null)
+            {
+                return BadRequest();
+            }
+
             var expense = new Expense(model.CompanyId, model.Date, model.Discount);
 
             Array.ForEach(model.Payments.ToArray(), p => expense.AddPayment(p.MethodId, p.Value));
