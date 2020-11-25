@@ -1,6 +1,6 @@
 {
   "name": "goldkeeper",
-  "version": "0.1.0-beta.g5a90ad83f9",
+  "version": "0.1.0-beta.g21ed92051f",
   "description": "Finance and Savings app",
   "main": "index.js",
   "contributors": [
@@ -69,7 +69,7 @@
   "homepage": "https://github.com/CarlosHAraujo/GoldKeeper#readme",
   "devDependencies": {
     "husky": "^4.3.0",
-    "nerdbank-gitversioning": "^2.2.7",
+    "nerdbank-gitversioning": "^3.3.37",
     "request": "^2.88.0",
     "shelljs": "^0.8.2"
   }
