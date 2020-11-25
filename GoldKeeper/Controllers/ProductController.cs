@@ -23,6 +23,11 @@ namespace GoldKeeper.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult<Product>> Post(ProductPostModel model, CancellationToken cancellationToken)
         {
+            if (model is null)
+            {
+                return BadRequest();
+            }
+
             var product = new Product(model.Name);
 
             var entity = await _context.Products.AddAsync(product, cancellationToken);
