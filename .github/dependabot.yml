@@ -12,4 +12,10 @@ updates:
     rebase-strategy: auto
     schedule:
       interval: daily
+  - directory: "/GoldKeeper/ClientApp"
+    open-pull-requests-limit: 5
+    package-ecosystem: "npm"
+    rebase-strategy: auto
+    schedule:
+        interval: daily
       
