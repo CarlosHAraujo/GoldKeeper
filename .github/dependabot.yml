@@ -6,10 +6,10 @@ updates:
     rebase-strategy: auto
     schedule:
       interval: daily
-  - directory: "/**/"
+  - directory: "/"
     open-pull-requests-limit: 5
     package-ecosystem: nuget
-    rebase-strategy: auto    
+    rebase-strategy: auto
     schedule:
       interval: daily
       
