@@ -5,16 +5,86 @@
 name: GoldKeeper-CI-DEV
 
 trigger:
-- develop
-- feature/*
-- bugfix/*
-- greenkeeper/*
-
-pool:
-  vmImage: 'VS2017-Win2016'
+  batch: true
+  branches:
+    include:
+      - develop
+      - feature/*
+      - bugfix/*
+      - greenkeeper/*
 
 variables:
   BuildConfiguration: 'dev'
 
-steps:
-- template: azure-pipelines.base.yml
+stages:
+  - stage: 'Backend'
+    pool:
+      vmImage: 'VS2017-Win2016'
+    jobs:
+      - job:
+        steps:
+          - task: NuGetToolInstaller@0
+
+          - task: DotNetCoreCLI@2
+            displayName: Install Nerdbank.GitVersioning tool
+            inputs:
+              command: custom
+              custom: tool
+              arguments: install --tool-path . nbgv
+
+          - script: nbgv cloud
+            displayName: Set Version
+
+          - task: Npm@1
+            displayName: 'Build (back-end) $(BuildConfiguration)'
+            inputs:
+              command: 'custom'
+              customCommand: 'run build:back:$(BuildConfiguration)'
+
+          - task: Npm@1
+            displayName: 'Test (back-end) $(BuildConfiguration)'
+            inputs:
+              command: 'custom'
+              customCommand: 'run test:back:$(BuildConfiguration)'
+  
+  - stage: 'Frontend'
+    dependsOn: []
+    jobs:
+      - job:
+        pool:
+          vmImage: 'ubuntu-latest'    
+        steps:
+          - task: Cache@2
+            displayName: Cache npm
+            inputs:
+              key: 'npm | "$(Agent.OS)" | $(Build.SourcesDirectory)/GoldKeeper/ClientApp/package.json'
+              path: $(Build.SourcesDirectory)/GoldKeeper/ClientApp/node_modules
+              cacheHitVar: CACHE_RESTORED
+            
+          - task: Npm@1
+            displayName: 'npm install (front-end)'
+            inputs:
+              workingDir: './GoldKeeper/ClientApp/'
+              command: 'install'
+            condition: ne(variables['CACHE_RESTORED'], 'true')
+
+          - task: Npm@1
+            displayName: 'Lint (front-end) $(BuildConfiguration)'
+            inputs:
+              workingDir: './GoldKeeper/ClientApp/'
+              command: 'custom'
+              customCommand: 'run lint:$(BuildConfiguration)'
+          
+          - task: Npm@1
+            displayName: 'Build (front-end) $(BuildConfiguration)'
+            inputs:
+              workingDir: './GoldKeeper/ClientApp/'
+              command: 'custom'
+              customCommand: 'run build:$(BuildConfiguration)'
+          
+          - task: Npm@1
+            displayName: 'Test (front-end) $(BuildConfiguration)'
+            inputs:
+              workingDir: './GoldKeeper/ClientApp/'
+              command: 'custom'
+              customCommand: 'run test:$(BuildConfiguration)'
