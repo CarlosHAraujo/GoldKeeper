@@ -4,5 +4,9 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"files.associations": {
+			"azure-pipelines.*.yml": "azure-pipelines"
+		}
+	}
 }
