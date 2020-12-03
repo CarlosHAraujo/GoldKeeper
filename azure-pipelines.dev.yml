@@ -5,7 +5,6 @@
 name: GoldKeeper-CI-DEV
 
 trigger:
-  batch: true
   branches:
     include:
       - develop
@@ -48,11 +47,11 @@ stages:
               customCommand: 'run test:back:$(BuildConfiguration)'
   
   - stage: 'Frontend'
+    pool:
+      vmImage: 'ubuntu-latest'    
     dependsOn: []
     jobs:
       - job:
-        pool:
-          vmImage: 'ubuntu-latest'    
         steps:
           - task: Cache@2
             displayName: Cache npm

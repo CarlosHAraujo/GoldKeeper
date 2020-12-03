@@ -135,6 +135,9 @@
             "devServerTarget": "ClientApp:serve"
           },
           "configurations": {
+            "staging":{
+              "devServerTarget": "ClientApp:serve:staging"
+            },
             "production": {
               "devServerTarget": "ClientApp:serve:production"
             }
