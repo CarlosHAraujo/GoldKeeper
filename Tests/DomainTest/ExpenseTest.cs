@@ -60,7 +60,7 @@ namespace DomainTest
 
         private static Expense GetGoodExpense(decimal discount = 0)
         {
-            return new Expense(1, default(DateTime), discount);
+            return new Expense(1, default, discount);
         }
 
         public static IEnumerable<object[]> GetItemSample()
