@@ -1,6 +1,6 @@
 {
   "name": "goldkeeper",
-  "version": "0.1.0-beta.g35a82dd95d",
+  "version": "0.1.0-beta.g02096e36d0",
   "description": "Finance and Savings app",
   "main": "index.js",
   "contributors": [
@@ -33,8 +33,8 @@
     "build:prod": "npm run build:back:prod && npm run build:front:prod",
     "test:back": "npm run test:back:dev",
     "test:back:dev": "dotnet test",
-    "test:back:stage": "dotnet test --environment 'Staging' -c Release",
-    "test:back:prod": "dotnet test --environment 'Production' -c Release",
+    "test:back:stage": "dotnet test -c Release",
+    "test:back:prod": "dotnet test -c Release",
     "test:front": "npm run test:front:dev",
     "test:front:dev": "pushd ./GoldKeeper/ClientApp/ && npm run test",
     "test:front:stage": "pushd ./GoldKeeper/ClientApp/ && npm run test:stage",
