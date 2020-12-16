@@ -9,7 +9,7 @@ export function RequiredIf(condition: () => boolean, otherControl: AbstractContr
     if (condition()) {
       return Validators.required(control);
     } else {
-      return null;
+      return undefined;
     }
   };
 }

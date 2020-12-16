@@ -26,11 +26,11 @@ export class ExtraCostAddComponent {
   }
 
   onAdded(): void {
-    this.added.emit(null);
+    this.added.emit(undefined);
   }
 
   onDeleted(): void {
-    this.deleted.emit(null);
+    this.deleted.emit(undefined);
   }
 
   get cost(): FormControl {

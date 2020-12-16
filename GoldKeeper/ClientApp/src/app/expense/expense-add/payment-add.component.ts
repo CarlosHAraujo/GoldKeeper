@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit
 import { FormGroup, FormControl } from '@angular/forms';
 import { PaymentMethodSelectModel } from '../models/payment-method-select.model';
 import { Observable } from 'rxjs';
-import { RequiredIf } from 'src/app/requiredif.validator';
+import { RequiredIf } from '../../requiredif.validator';
 
 @Component({
   selector: 'app-payment-add',
@@ -16,7 +16,7 @@ export class PaymentAddComponent implements OnInit {
   public form: FormGroup;
 
   @Input()
-  public paymentMethods$: Observable<Array<PaymentMethodSelectModel>>;
+  public paymentMethods$: Observable<PaymentMethodSelectModel[]>;
 
   @Input()
   invalid: boolean;
@@ -40,10 +40,10 @@ export class PaymentAddComponent implements OnInit {
   }
 
   onAdded(): void {
-    this.added.emit(null);
+    this.added.emit(undefined);
   }
   onDeleted(): void {
-    this.deleted.emit(null);
+    this.deleted.emit(undefined);
   }
 
   get methodName(): FormControl {
@@ -65,9 +65,9 @@ export class PaymentAddComponent implements OnInit {
   onNewPaymentMethodClicked(): void {
     this.newPaymentMethod = !this.newPaymentMethod;
     if (this.newPaymentMethod) {
-      this.methodId.reset(null, { onlySelf: true, emitEvent: false });
+      this.methodId.reset(undefined, { onlySelf: true, emitEvent: false });
     } else {
-      this.methodName.reset(null, { onlySelf: true, emitEvent: false });
+      this.methodName.reset(undefined, { onlySelf: true, emitEvent: false });
     }
   }
 }

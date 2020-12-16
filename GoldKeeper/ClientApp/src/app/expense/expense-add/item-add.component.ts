@@ -3,7 +3,7 @@ import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { ProductSelectModel } from '../models/product-select.model';
 import { Observable } from 'rxjs';
 import { first, filter, take, debounceTime } from 'rxjs/operators';
-import { RequiredIf } from 'src/app/requiredif.validator';
+import { RequiredIf } from '../../requiredif.validator';
 
 @Component({
   selector: 'app-item-add',
@@ -41,11 +41,11 @@ export class ItemAddComponent implements OnInit {
   }
 
   onAdded(): void {
-    this.added.emit(null);
+    this.added.emit(undefined);
   }
 
   ondeleted(): void {
-    this.deleted.emit(null);
+    this.deleted.emit(undefined);
   }
 
   get productName(): FormControl {
@@ -71,9 +71,9 @@ export class ItemAddComponent implements OnInit {
   onNewProductClicked(): void {
     this.newProduct = !this.newProduct;
     if (this.newProduct) {
-      this.productId.reset(null, { onlySelf: true, emitEvent: false });
+      this.productId.reset(undefined, { onlySelf: true, emitEvent: false });
     } else {
-      this.productName.reset(null, { onlySelf: true, emitEvent: false });
+      this.productName.reset(undefined, { onlySelf: true, emitEvent: false });
     }
   }
 }

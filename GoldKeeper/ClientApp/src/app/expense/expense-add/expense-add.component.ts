@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { PaymentMethodSelectModel } from '../models/payment-method-select.model';
 import { ProductSelectModel } from '../models/product-select.model';
 import { CompanySelectModel } from '../models/company-select.model';
-import { RequiredIf } from 'src/app/requiredif.validator';
+import { RequiredIf } from '../../requiredif.validator';
 
 @Component({
   selector: 'app-expense-add',
@@ -30,10 +30,10 @@ export class ExpenseAddComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      companyId: null,
-      companyName: null,
-      date: [null, Validators.required],
-      discount: null,
+      companyId: undefined,
+      companyName: undefined,
+      date: [undefined, Validators.required],
+      discount: undefined,
       extraCosts: this.fb.array([]),
       payments: this.fb.array([], [Validators.required]),
       items: this.fb.array([], Validators.required)
@@ -43,23 +43,23 @@ export class ExpenseAddComponent implements OnInit {
     this.companyName.setValidators([RequiredIf(() => this.newCompany && !this.companyId.value, this.companyId)]);
 
     this.extraCostForm = this.fb.group({
-      cost: [null, Validators.required],
-      value: [null, Validators.required],
+      cost: [undefined, Validators.required],
+      value: [undefined, Validators.required],
       submitted: false
     });
 
     this.paymentForm = this.fb.group({
-      methodId: null,
-      methodName: null,
-      value: [null, Validators.required],
+      methodId: undefined,
+      methodName: undefined,
+      value: [undefined, Validators.required],
       submitted: false
     });
 
     this.itemForm = this.fb.group({
-      productId: null,
-      productName: null,
-      quantity: [null, Validators.required],
-      value: [null, Validators.required],
+      productId: undefined,
+      productName: undefined,
+      quantity: [undefined, Validators.required],
+      value: [undefined, Validators.required],
       submitted: false
     });
 
@@ -131,9 +131,9 @@ export class ExpenseAddComponent implements OnInit {
   onNewCompanyClicked(): void {
     this.newCompany = !this.newCompany;
     if (this.newCompany) {
-      this.companyId.reset(null, { onlySelf: true, emitEvent: false });
+      this.companyId.reset(undefined, { onlySelf: true, emitEvent: false });
     } else {
-      this.companyName.reset(null, { onlySelf: true, emitEvent: false });
+      this.companyName.reset(undefined, { onlySelf: true, emitEvent: false });
     }
   }
 
