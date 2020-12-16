@@ -1,4 +1,6 @@
-import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { ExpenseAddComponent } from './expense-add.component';
 
@@ -8,9 +10,10 @@ describe('ExpenseAddComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExpenseAddComponent ]
+      imports: [ReactiveFormsModule, HttpClientModule],
+      declarations: [ExpenseAddComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
