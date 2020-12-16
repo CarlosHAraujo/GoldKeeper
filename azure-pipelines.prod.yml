@@ -84,8 +84,8 @@ stages:
               customCommand: 'run test:$(BuildConfiguration)'
 
           - task: Npm@1
-            displayName: 'e2e Test (front-end) Prod'
+            displayName: 'e2e Test (front-end) $(BuildConfiguration)'
             inputs:
               workingDir: './GoldKeeper/ClientApp/'
               command: 'custom'
-              customCommand: 'run e2e:prod'
+              customCommand: 'run e2e:$(BuildConfiguration)'

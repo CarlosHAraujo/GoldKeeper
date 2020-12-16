@@ -10,7 +10,6 @@ trigger:
       - develop
       - feature/*
       - bugfix/*
-      - greenkeeper/*
 
 variables:
   BuildConfiguration: 'dev'
