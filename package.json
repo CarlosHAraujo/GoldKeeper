@@ -68,7 +68,7 @@
   },
   "homepage": "https://github.com/CarlosHAraujo/GoldKeeper#readme",
   "devDependencies": {
-    "husky": "^4.3.0",
+    "husky": "^4.3.6",
     "nerdbank-gitversioning": "^3.3.37",
     "request": "^2.88.2",
     "shelljs": "^0.8.4"
