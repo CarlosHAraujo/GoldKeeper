@@ -28,7 +28,7 @@ jobs:
       - name: 'Setup dotnet'
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '5.0.x'
+          dotnet-version: '2.1.x'
 
       - name: 'Install Nerdbank.GitVersioning tool'
         run: dotnet tool install nbgv --tool-path ~/.dotnet/tools
@@ -66,4 +66,4 @@ jobs:
       
       - name: 'Test (front-end) ${{ env.BuildConfiguration }}'
         working-directory: ./GoldKeeper/ClientApp/
-        run: 'run test:${{ env.BuildConfiguration }}'
+        run: 'npm run test:${{ env.BuildConfiguration }}'
