@@ -8,9 +8,6 @@ on:
       - develop
       - feature/*
       - bugfix/*
-  pull_request:
-    branches:
-      - develop
 
 env:
   BuildConfiguration: 'dev'
