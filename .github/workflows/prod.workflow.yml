@@ -1,0 +1,68 @@
+# Build for Production environment
+
+name: GoldKeeper-CI-PROD
+
+on: 
+  push:
+    branches:
+      - master
+
+env:
+  BuildConfiguration: 'prod'
+
+jobs:
+  backend:
+    name: 'Build and Test Backend'
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout github
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
+
+      - name: 'Setup dotnet'
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '2.1.x'
+
+      - name: 'Install Nerdbank.GitVersioning tool'
+        run: dotnet tool install nbgv --tool-path ~/.dotnet/tools
+
+      - name: 'Set Version'
+        run: nbgv cloud
+
+      - name: 'Build (back-end) ${{ env.BuildConfiguration }}'
+        run: 'npm run build:back:${{ env.BuildConfiguration }}'
+
+      - name: 'Test (back-end) ${{ env.BuildConfiguration }}'
+        run: 'npm run test:back:${{ env.BuildConfiguration }}'
+         
+  frontend:
+    name: 'Build and Test Frontend'
+    runs-on: ubuntu-latest
+    steps:    
+      - name: checkout github
+        uses: actions/checkout@v2
+
+      - name: Cache npm
+        uses: c-hive/gha-npm-cache@v1
+
+      - name: 'npm install (front-end)'
+        working-directory: ./GoldKeeper/ClientApp/
+        run: npm ci
+
+      - name: 'Lint (front-end) ${{ env.BuildConfiguration }}'
+        working-directory: ./GoldKeeper/ClientApp/
+        run: 'npm run lint:${{ env.BuildConfiguration }}'
+      
+      - name: 'Build (front-end) ${{ env.BuildConfiguration }}'
+        working-directory: ./GoldKeeper/ClientApp/
+        run: 'npm run build:${{ env.BuildConfiguration }}'
+      
+      - name: 'Test (front-end) ${{ env.BuildConfiguration }}'
+        working-directory: ./GoldKeeper/ClientApp/
+        run: 'npm run test:${{ env.BuildConfiguration }}'
+
+      - name: 'e2e Test (front-end) ${{ env.BuildConfiguration }}'
+        working-directory: ./GoldKeeper/ClientApp/
+        run: 'npm run e2e:${{ env.BuildConfiguration }}'
