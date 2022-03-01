@@ -71,6 +71,6 @@
         "husky": "^4.3.8",
         "nerdbank-gitversioning": "^3.4.240",
         "request": "^2.88.2",
-        "shelljs": "^0.8.4"
+        "shelljs": "^0.8.5"
     }
 }
