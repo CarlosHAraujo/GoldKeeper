@@ -30,9 +30,6 @@ jobs:
         with:
           dotnet-version: '2.1.x'
 
-      - name: 'Install Nerdbank.GitVersioning tool'
-        run: dotnet tool install nbgv --tool-path ~/.dotnet/tools
-
       - name: 'Set Version'
         run: nbgv cloud
 
